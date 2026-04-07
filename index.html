@@ -12,21 +12,20 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* --- HOME: CONTENEDORES PLANOS Y GRANDES --- */
+        /* --- HOME: ESTILOS --- */
         .card-uvm-home { 
             background: white; border: 1.5px solid #e5e7eb; border-radius: 1.1rem; 
             padding: 1.25rem 1rem; margin-bottom: 0.9rem; box-shadow: none !important;
         }
+        /* Beca: Azul +5% saturación y borde +5% oscuro */
         .beca-container { 
-            background-color: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 1.1rem; 
+            background-color: #e0f2ff; border: 1.5px solid #7dd3fc; border-radius: 1.1rem; 
             padding: 1.25rem 1rem; margin-bottom: 1.2rem; box-shadow: none !important;
         }
         .agenda-container-home { 
             background: white; border: 1.5px solid #e5e7eb; border-radius: 1rem; 
             padding: 1rem; box-shadow: none !important;
         }
-
-        /* Tira de materias: TEXTO JUNTO Y NEGRITA (NUEVA VERSIÓN) */
         .materia-item { 
             background-color: #fca5a5; border-radius: 0.6rem; 
             padding: 0.4rem 0.8rem; margin-bottom: 0.4rem; 
@@ -34,43 +33,42 @@
             line-height: 1.1; 
         }
         .materia-text { font-weight: 800; font-size: 12px; color: #000; display: block; }
-        .materia-detalle { margin-top: 0.5px; opacity: 0.9; }
         
-        .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
-        
-        /* --- CREDENCIAL: MODELO CORRECTO (RESTAURADO) --- */
+        /* --- CREDENCIAL: AJUSTES --- */
         .cred-card {
             width: 90%; max-width: 380px; background-color: #fff1f2; 
             border-radius: 1.5rem; overflow: hidden; margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
+        /* Rojo -5% saturación */
         .cred-header-red { 
-            background-color: #e32219; padding: 1.5rem 1.5rem 3rem 1.5rem; 
+            background-color: #d62d25; padding: 1.5rem 1.5rem 3rem 1.5rem; 
             display: flex; justify-content: center; position: relative;
         }
         .cred-header-red::after {
             content: ''; position: absolute; bottom: -25px; left: 50%;
             transform: translateX(-50%); width: 80px; height: 50px;
-            background-color: #e32219; border-radius: 0 0 100px 100px; z-index: 1;
+            background-color: #d62d25; border-radius: 0 0 100px 100px; z-index: 1;
         }
         .qr-container {
             background: white; padding: 10px; display: inline-block;
             border-radius: 0.5rem; margin: 15px 0;
         }
+        .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
     </style>
 </head>
 <body class="select-none">
 
     <div id="home" class="page active pb-24">
         <header class="flex justify-between items-center px-5 py-5 bg-white sticky top-0 z-50">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-7">
             <div class="flex items-center gap-4">
                 <i class="fa-regular fa-bell text-xl text-black"></i>
                 <div class="bg-[#c20e1a] text-white w-8 h-8 flex items-center justify-center rounded-full font-normal text-[12px]">AG</div>
             </div>
         </header>
+
         <main class="px-5 mt-2">
-            <p class="text-[17px] mb-4">¡Hola, <span class="font-bold">Garcia Fernandez Antonio Jose!</span></p>
+            <p class="text-[19px] mb-4">¡Hola, <span class="font-bold">Garcia Fernandez Antonio Jose!</span></p>
             
             <div class="card-uvm-home">
                 <h2 class="text-[16px] font-bold text-black mb-1">Lic En Medicina Veterin Y Zoo</h2>
@@ -90,12 +88,29 @@
                 <div id="agenda-list" class="space-y-1">
                     <div class="materia-item">
                         <span class="materia-text">Cirugía de Pequeñas Especies</span>
-                        <span class="materia-text materia-detalle">07:00H - 08:59H , SALÓN 10-VET1</span>
+                        <span class="materia-text opacity-90 mt-0.5">07:00H - 08:59H , SALÓN 10-VET1</span>
                     </div>
                     <div class="materia-item">
                         <span class="materia-text">Patología Clínica</span>
-                        <span class="materia-text materia-detalle">09:00H - 10:59H , SALÓN 10-VET2</span>
+                        <span class="materia-text opacity-90 mt-0.5">09:00H - 10:59H , SALÓN 10-VET2</span>
                     </div>
+                    <div class="materia-item">
+                        <span class="materia-text">Nutrición Animal Especializada</span>
+                        <span class="materia-text opacity-90 mt-0.5">11:00H - 12:59H , SALÓN 10-VET3</span>
+                    </div>
+                    <div class="materia-item">
+                        <span class="materia-text">Ética Médica</span>
+                        <span class="materia-text opacity-90 mt-0.5">13:00H - 14:59H , SALÓN 10-VET4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-uvm-home mt-4">
+                <div class="flex justify-between items-center mb-3"><h2 class="text-[17px] font-bold">Avance académico</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
+                <div class="flex justify-between text-center">
+                    <div class="flex-1"><p class="text-[17px] font-bold">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p></div>
+                    <div class="flex-1 border-x border-gray-100"><p class="text-[17px] font-bold">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
+                    <div class="flex-1"><p class="text-[17px] font-bold">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
                 </div>
             </div>
         </main>
@@ -115,11 +130,14 @@
 
                     <div class="pt-8 pb-24 text-center px-4 relative z-0">
                         <p class="text-[#e32219] font-bold text-[13px] mb-1">Estudiante</p>
-                        <h2 class="text-[20px] font-black leading-tight text-gray-800 mb-2 uppercase max-w-[200px] mx-auto">
+                        <h2 class="text-[20px] font-black leading-tight text-gray-800 mb-6 uppercase max-w-[200px] mx-auto">
                             GARCIA FERNANDEZ<br>ANTONIO JOSE
                         </h2>
-                        <p class="text-[13.5px] text-gray-600 font-bold leading-tight max-w-[220px] mx-auto">
-                            Lic En Medicina Veterin Y Zoo<br>Campus LOMAS VERDES
+                        <p class="text-[13.5px] text-gray-600 font-bold leading-tight max-w-[250px] mx-auto">
+                            Licenciatura - Lic en Medicina Veterin y Zoo
+                        </p>
+                        <p class="text-[13.5px] text-gray-600 font-bold mt-4 opacity-95">
+                            Campus LOMAS VERDES
                         </p>
                         
                         <div class="qr-container">
