@@ -20,36 +20,41 @@
         .materia-detalle { font-size: 10.5px; color: #000; font-weight: 700; margin-top: 1px; opacity: 0.9; }
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
         
-        /* --- APARTADO CREDENCIAL ESTILO FOTO --- */
+        /* --- ESTILOS REVISADOS PARA LA CREDENCIAL --- */
         .cred-card {
-            width: 92%;
-            max-width: 400px;
-            background-color: #fff1f2; /* El rosa exacto de la foto */
-            border-radius: 2.5rem;
+            width: 90%;
+            max-width: 380px; /* Un poco más pequeña */
+            background-color: #fff1f2; /* El rosa exacto */
+            border-radius: 1rem; /* MÁS CUADRADA, menos redondeada */
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 20px;
         }
-        .cred-header-red {
-            background-color: #e32219; /* Rojo UVM */
-            height: 160px;
+        
+        /* Diseño de cabecera sólido con semicírculo (Ajustado) */
+        .cred-header-red { 
+            background-color: #e32219; 
+            padding: 2rem 1.5rem 3.5rem 1.5rem; /* pt-8, px-6, pb-14 */
             display: flex;
             justify-content: center;
-            align-items: center;
             position: relative;
         }
-        /* El semicírculo rojo que baja */
+        
+        /* El semicírculo rojo sólido característico */
         .cred-header-red::after {
             content: '';
             position: absolute;
-            bottom: -35px;
+            bottom: -35px; /* Mitad de la altura */
             left: 50%;
             transform: translateX(-50%);
-            width: 110px;
+            width: 100px;
             height: 70px;
             background-color: #e32219;
-            border-radius: 0 0 110px 110px;
+            border-radius: 0 0 100px 100px;
+            z-index: 1;
         }
-        .cred-logo { width: 100px; margin-top: -20px; filter: brightness(0) invert(1); }
+        
+        /* Contenedor del QR con padding blanco */
         .qr-container {
             background: white;
             padding: 10px;
@@ -66,7 +71,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-5">
             <div class="flex items-center gap-3">
                 <i class="fa-regular fa-bell text-lg text-black"></i>
-                <div onclick="showPage('config')" class="bg-[#c20e1a] text-white w-7 h-7 flex items-center justify-center rounded-full font-bold text-[10px]" id="avatar-home">GA</div>
+                <div class="bg-[#c20e1a] text-white w-7 h-7 flex items-center justify-center rounded-full font-bold text-[10px]" id="avatar-home">GA</div>
             </div>
         </header>
         <main class="px-4 mt-2">
@@ -99,17 +104,22 @@
     </div>
 
     <div id="credencial" class="page bg-white">
-        <div class="flex flex-col items-center pt-8">
+        <div class="flex flex-col items-center pt-8 h-screen relative">
+            
+            <div onclick="showPage('home')" class="absolute top-8 left-4 p-2 cursor-pointer z-50">
+                <i class="fa-solid fa-arrow-left text-xl text-gray-700"></i>
+            </div>
+
             <div class="cred-card">
                 <div class="cred-header-red">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="cred-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-200">
                 </div>
-                
-                <div class="pt-16 pb-10 text-center px-4">
-                    <p class="text-[#e32219] font-bold text-[14px] mb-1">Estudiante</p>
-                    <h2 class="text-[22px] font-black text-[#1a1a1b] leading-tight mb-2" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
-                    <p class="text-[13px] text-[#4a4a4a] font-semibold leading-tight">
-                        Bachillerato - <span id="display-carrera-cred">Preparatoria Unam</span><br>
+
+                <div class="pt-10 pb-6 text-center px-4 relative z-0">
+                    <p class="text-[#ef4444] font-bold text-[13px] mb-1">Estudiante</p>
+                    <h2 class="text-[22px] font-black leading-tight text-gray-800 mb-2 uppercase" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
+                    <p class="text-[13px] text-gray-600 font-bold leading-tight">
+                        <span id="display-carrera-cred">Bachillerato - Preparatoria Unam</span><br>
                         Campus LOMAS VERDES
                     </p>
                     
@@ -117,8 +127,8 @@
                         <img id="qr-img" class="w-40 h-40">
                     </div>
 
-                    <div class="flex flex-col items-center -space-y-1"> <p class="text-[22px] font-black tracking-widest text-[#1a1a1b]" id="display-mat-cred">100240218</p>
-                        <p class="text-[11px] text-gray-400 font-bold uppercase tracking-tighter">VIGENCIA: NO VIGENTE</p>
+                    <div class="flex flex-col items-center -space-y-1"> <p class="text-[22px] font-black mt-1 tracking-widest text-gray-800" id="display-mat-cred">100240218</p>
+                        <p class="text-[11px] text-gray-400 font-black uppercase tracking-tighter">VIGENCIA: NO VIGENTE</p>
                     </div>
                 </div>
             </div>
@@ -135,56 +145,96 @@
         <button class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-circle-question text-lg"></i><span class="nav-text">CAE</span>
         </button>
-        <button onclick="showPage('config')" id="btn-config" class="flex flex-col items-center text-gray-400">
+        <button onclick="openConfig()" id="btn-config" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-bars text-lg"></i><span class="nav-text">Menú</span>
         </button>
     </nav>
 
     <div id="config" class="page bg-white p-6">
         <div class="flex items-center gap-4 mb-8">
-            <i onclick="showPage('home')" class="fa-solid fa-arrow-left text-xl"></i>
-            <h2 class="text-xl font-bold uppercase">Configuración</h2>
+            <i onclick="showPage('home')" class="fa-solid fa-arrow-left text-xl cursor-pointer"></i>
+            <h2 class="text-xl font-bold uppercase">Modificar Datos</h2>
         </div>
         <div class="space-y-4">
             <input type="text" id="in-nom" placeholder="NOMBRE COMPLETO" class="w-full p-4 border rounded-xl uppercase font-bold text-sm">
             <input type="text" id="in-mat" placeholder="MATRÍCULA" class="w-full p-4 border rounded-xl font-bold text-sm">
             <input type="text" id="in-car" placeholder="CARRERA" class="w-full p-4 border rounded-xl uppercase font-bold text-sm">
-            <button onclick="save()" class="w-full bg-[#c20e1a] text-white p-4 rounded-xl font-black text-sm">GUARDAR CAMBIOS</button>
+            <button onclick="save()" class="w-full bg-[#c20e1a] text-white p-4 rounded-xl font-black text-sm cursor-pointer">GUARDAR CAMBIOS</button>
         </div>
     </div>
 
     <script>
-        let data = { n: "GARCIA FERNANDEZ ANTONIO JOSE", m: "100240218", c: "Preparatoria Unam" };
+        // Datos iniciales
+        let data = {
+            n: "GARCIA FERNANDEZ ANTONIO JOSE",
+            m: "100240218",
+            c: "Lic En Medicina Veterin Y Zoo"
+        };
+
         function updateUI() {
+            // Home (SIN CAMBIOS)
             document.getElementById('display-saludo').innerText = data.n;
             document.getElementById('display-carrera-home').innerText = data.c;
             document.getElementById('display-mat-home').innerText = data.m;
             document.getElementById('avatar-home').innerText = data.n[0] + (data.n.split(' ')[1] ? data.n.split(' ')[1][0] : '');
+            
+            // Credencial (ARREGLADA)
             const nombreSplit = data.n.split(' ');
             const formattedName = nombreSplit.slice(0, 2).join(' ') + '<br>' + nombreSplit.slice(2).join(' ');
-            document.getElementById('display-nombre-cred').innerHTML = formattedName;
+            document.getElementById('display-nombre-cred').innerHTML = formattedName; // innerHTML para salto de línea
             document.getElementById('display-carrera-cred').innerText = data.c;
             document.getElementById('display-mat-cred').innerText = data.m;
             document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data.m}`;
         }
+
+        // Función para abrir la configuración precargando los datos
+        function openConfig() {
+            document.getElementById('in-nom').value = data.n;
+            document.getElementById('in-mat').value = data.m;
+            document.getElementById('in-car').value = data.c;
+            showPage('config');
+        }
+
         function save() {
             const n = document.getElementById('in-nom').value.toUpperCase();
             const m = document.getElementById('in-mat').value;
             const c = document.getElementById('in-car').value;
-            if(n) data.n = n; if(m) data.m = m; if(c) data.c = c;
-            updateUI(); showPage('home');
+            
+            if(n) data.n = n;
+            if(m) data.m = m;
+            if(c) data.c = c;
+            
+            updateUI();
+            showPage('home'); // Regresa al home tras guardar
         }
+
         function showPage(id) {
+            // Ocultar todas las páginas
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Mostrar la seleccionada
             document.getElementById(id).classList.add('active');
-            const navButtons = {'home': 'btn-home', 'credencial': 'btn-credencial', 'config': 'btn-config'};
+            
+            // Actualizar colores del Navbar
+            const navButtons = {
+                'home': 'btn-home',
+                'credencial': 'btn-credencial',
+                'config': 'btn-config'
+            };
+            
             Object.values(navButtons).forEach(btnId => {
                 const btn = document.getElementById(btnId);
-                if(btn) btn.classList.replace('text-red-600', 'text-gray-400');
+                if(btn) {
+                    btn.classList.replace('text-red-600', 'text-gray-400');
+                }
             });
+
             const activeBtn = document.getElementById(navButtons[id]);
-            if(activeBtn) activeBtn.classList.replace('text-gray-400', 'text-red-600');
+            if(activeBtn) {
+                activeBtn.classList.replace('text-gray-400', 'text-red-600');
+            }
         }
+
+        // Inicializar
         updateUI();
     </script>
 </body>
