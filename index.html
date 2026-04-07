@@ -9,219 +9,160 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --uvm-red: #c20e1a; }
-        body { font-family: -apple-system, system-ui, sans-serif; -webkit-tap-highlight-color: transparent; background: #f8f9fa; }
+        body { font-family: -apple-system, system-ui, sans-serif; background-color: #f8f9fa; }
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
-        .loader { border-top-color: var(--uvm-red); animation: spinner 0.6s linear infinite; }
-        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .menu-item { border-bottom: 1px solid #f3f4f6; padding: 14px 20px; display: flex; align-items: center; gap: 15px; font-size: 15px; }
-        .menu-item i { width: 20px; color: #4b5563; font-size: 18px; }
+        /* Bordes específicos solicitados */
+        .card-uvm { background: white; border: 1px solid #d1d5db; border-radius: 1rem; padding: 1.25rem; }
+        .nav-btn { color: #9ca3af; flex-direction: column; display: flex; align-items: center; font-size: 10px; }
+        .nav-btn.active { color: #c20e1a; }
     </style>
 </head>
-<body>
+<body class="select-none">
 
-    <div id="splash" class="page active flex flex-col items-center justify-center bg-white">
-        <h1 class="text-6xl font-black text-[#c20e1a] tracking-tighter mb-20">UVM</h1>
-        <div class="loader w-8 h-8 border-4 border-gray-100 rounded-full"></div>
-    </div>
-
-    <div id="home" class="page pb-24">
-        <header class="flex justify-between items-center px-6 py-4 bg-white sticky top-0 z-40">
-            <h1 class="text-3xl font-bold text-[#c20e1a] tracking-tighter">UVM</h1>
+    <div id="home" class="page active pb-28">
+        <header class="flex justify-between items-center px-5 py-4 bg-white sticky top-0 z-50">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_UVM.png" alt="UVM" class="h-8">
             <div class="flex items-center gap-4">
-                <i class="fa-regular fa-bell text-2xl"></i>
-                <div onclick="showPage('perfil')" class="bg-[#c20e1a] text-white w-9 h-9 flex items-center justify-center rounded-full font-bold text-sm" id="avatar-home">GA</div>
+                <i class="fa-regular fa-bell text-2xl text-gray-700"></i>
+                <div onclick="showPage('config')" class="bg-[#c20e1a] text-white w-9 h-9 flex items-center justify-center rounded-full font-bold text-sm" id="avatar-home">GA</div>
             </div>
         </header>
 
-        <main class="px-4 mt-2 space-y-4">
-            <p class="text-xl px-2">¡Hola, <span class="font-bold" id="hi-name">Garcia Fernandez Antonio Jose!</span></p>
+        <main class="px-4 mt-3 space-y-4">
+            <p class="text-xl font-normal px-1">¡Hola, <span class="font-bold" id="display-saludo">Garcia Fernandez Antonio Jose!</span></p>
             
-            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
-                <h2 class="text-[17px] font-bold" id="home-carrera">Lic En Medicina Veterin Y Zoo</h2>
-                <p class="text-sm text-gray-500">Campus <span id="home-campus">Lomas Verdes</span> - Matrícula <span id="home-mat">100240218</span></p>
+            <div class="card-uvm shadow-sm">
+                <h2 class="text-[17px] font-bold text-gray-800" id="display-carrera-home">Lic En Medicina Veterin Y Zoo</h2>
+                <p class="text-sm text-gray-500 mt-1">Campus Lomas Verdes - Matrícula <span id="display-mat-home">100240218</span></p>
             </div>
 
-            <div class="bg-[#e1f5fe] rounded-2xl p-4 text-[14px] border border-blue-100">
-                ¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.
+            <div class="bg-[#e1f5fe] border border-[#b3e5fc] rounded-2xl p-4 text-[14px] leading-snug text-gray-700">
+                Si cuentas con beca, realiza tus pagos en las fechas establecidas en tu renovación para no perder el beneficio.
             </div>
 
             <section>
-                <div class="flex justify-between items-center mb-3 px-1">
-                    <h2 class="text-xl font-bold">Agenda</h2>
+                <div class="flex justify-between items-center mb-2 px-1">
+                    <h2 class="text-xl font-bold text-gray-900">Agenda</h2>
                     <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
                 </div>
-                <p class="font-bold text-sm mb-3 px-1">Martes 07 de abril</p>
-                <div id="agenda-list" class="space-y-3"></div>
+                <p class="font-bold text-[15px] mb-3 px-1 text-gray-900">Martes 07 de abril</p>
+                
+                <div id="agenda-container" class="space-y-2">
+                    <div class="bg-[#d32f2f] p-4 rounded-xl shadow-sm border border-red-800">
+                        <p class="font-bold text-black text-[16px]">Cirugía de Pequeñas Especies</p>
+                        <p class="text-black text-sm font-medium opacity-80">07:00h - 08:59h , Salón 10-VET1</p>
+                    </div>
+                    <div class="bg-[#d32f2f] p-4 rounded-xl shadow-sm border border-red-800">
+                        <p class="font-bold text-black text-[16px]">Patología Clínica</p>
+                        <p class="text-black text-sm font-medium opacity-80">09:00h - 10:59h , Salón 10-VET2</p>
+                    </div>
+                </div>
             </section>
 
-            <section class="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm">
+            <div class="card-uvm shadow-sm mt-2">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold">Avance académico</h2>
+                    <h2 class="text-xl font-bold text-gray-900">Avance académico</h2>
                     <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
                 </div>
-                <div class="flex justify-between text-center">
-                    <div><p class="text-2xl font-bold" id="home-perc">72.22%</p><p class="text-[10px] text-gray-400 font-bold uppercase">Avance</p></div>
-                    <div><p class="text-2xl font-bold" id="home-prom">8.35</p><p class="text-[10px] text-gray-400 font-bold uppercase">Promedio</p></div>
-                    <div><p class="text-2xl font-bold" id="home-mats">25/51</p><p class="text-[10px] text-gray-400 font-bold uppercase">Materias</p></div>
+                <div class="flex justify-between text-center px-2">
+                    <div><p class="text-2xl font-bold text-gray-900">12.5%</p><p class="text-[10px] text-gray-400 font-bold uppercase mt-1">Avance</p></div>
+                    <div><p class="text-2xl font-bold text-gray-900">9.40</p><p class="text-[10px] text-gray-400 font-bold uppercase mt-1">Promedio</p></div>
+                    <div><p class="text-2xl font-bold text-gray-900">6/48</p><p class="text-[10px] text-gray-400 font-bold uppercase mt-1">Materias</p></div>
                 </div>
-            </section>
+            </div>
         </main>
     </div>
 
-    <div id="credencial" class="page bg-[#fff1f2]">
+    <div id="credencial" class="page bg-white">
         <div class="flex flex-col items-center pt-8 h-screen">
-            <div class="w-[90%] bg-[#c20e1a] rounded-t-3xl pt-10 pb-12 flex flex-col items-center relative">
-                <h1 class="text-5xl font-black text-white tracking-tighter">UVM</h1>
-                <div class="absolute -bottom-8 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <div class="w-14 h-14 bg-gray-100 rounded-full overflow-hidden">
-                        <img src="" id="cred-foto" class="hidden">
+            <div class="w-[92%] bg-[#ef5350] rounded-t-[2.5rem] pt-8 pb-10 flex flex-col items-center relative">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_UVM.png" class="h-10 brightness-200 contrast-200">
+                <div class="absolute -bottom-10 w-20 h-20 bg-white rounded-full border-4 border-white overflow-hidden shadow-md">
+                    <div class="w-full h-full bg-gray-100 flex items-center justify-center">
+                        <i class="fa-solid fa-user text-gray-300 text-4xl"></i>
                     </div>
                 </div>
             </div>
-            <div class="w-[90%] bg-white rounded-b-3xl pt-14 pb-10 px-8 text-center shadow-xl">
-                <p class="text-red-600 font-bold text-xs uppercase mb-2">Estudiante</p>
-                <h2 class="text-2xl font-extrabold leading-tight mb-4" id="cred-nombre">Garcia Fernandez Antonio Jose</h2>
-                <p class="text-sm text-gray-700 leading-tight">Licenciatura - <span id="cred-carrera">Lic En Medicina Veterin Y Zoo</span><br>Campus <span id="cred-campus">LOMAS VERDES</span></p>
-                <p class="text-xl font-bold mt-4 tracking-[0.2em]" id="cred-mat">100240218</p>
+
+            <div class="w-[92%] bg-[#fff5f5] rounded-b-[2.5rem] pt-14 pb-12 px-6 text-center shadow-lg border border-red-50">
+                <p class="text-[#c20e1a] font-bold text-xs uppercase tracking-widest mb-2">Estudiante</p>
+                <h2 class="text-2xl font-black leading-tight text-gray-900 mb-2 uppercase" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
+                <p class="text-sm text-gray-700 font-medium leading-tight">Licenciatura - <span id="display-carrera-cred">Lic En Medicina Veterin Y Zoo</span><br>Campus LOMAS VERDES</p>
+                
                 <div class="mt-8 flex justify-center">
-                    <img id="qr" class="w-44 h-44">
+                    <img id="qr-img" class="w-44 h-44 p-2 bg-white rounded-lg shadow-sm border border-gray-100">
                 </div>
-                <p class="text-[10px] text-gray-400 font-bold mt-6 uppercase">Vigencia: VIGENTE 2026</p>
+
+                <p class="text-2xl font-black mt-4 tracking-[0.1em] text-gray-900" id="display-mat-cred">100240218</p>
+                
+                <p class="text-sm text-red-600 font-black mt-6 uppercase italic">NO VIGENTE</p>
             </div>
         </div>
     </div>
 
-    <div id="menu" class="page bg-white">
-        <header class="p-6 border-b flex items-center gap-4">
-            <i onclick="showPage('home')" class="fa-solid fa-xmark text-xl text-gray-400"></i>
-            <h2 class="text-2xl font-bold">Menú</h2>
-        </header>
-        <div class="flex flex-col">
-            <div class="menu-item"><i class="fa-solid fa-house"></i> Inicio</div>
-            <div class="menu-item"><i class="fa-solid fa-chart-line"></i> Avance académico</div>
-            <div class="menu-item"><i class="fa-solid fa-book"></i> Materias</div>
-            <div class="menu-item"><i class="fa-solid fa-wallet"></i> Pagos y Estado de cuenta</div>
-            <div class="menu-item"><i class="fa-solid fa-calendar-days"></i> Agenda</div>
-            <div class="menu-item"><i class="fa-solid fa-user-graduate"></i> Información del estudiante</div>
-            <div class="menu-item" onclick="showPage('config')"><i class="fa-solid fa-gear text-red-600"></i> <span class="text-red-600 font-bold">Configuración App</span></div>
+    <div id="config" class="page bg-white p-6">
+        <div class="flex items-center gap-4 mb-8">
+            <i onclick="showPage('home')" class="fa-solid fa-arrow-left text-xl"></i>
+            <h2 class="text-2xl font-bold">Editar Datos</h2>
+        </div>
+        <div class="space-y-4">
+            <input type="text" id="in-nom" placeholder="Nombre" class="w-full p-4 rounded-xl border border-gray-300">
+            <input type="text" id="in-mat" placeholder="Matrícula" class="w-full p-4 rounded-xl border border-gray-300">
+            <input type="text" id="in-car" placeholder="Carrera" class="w-full p-4 rounded-xl border border-gray-300">
+            <button onclick="save()" class="w-full bg-black text-white p-4 rounded-xl font-bold">Guardar y Regresar</button>
         </div>
     </div>
 
-    <div id="config" class="page bg-gray-50">
-        <header class="p-6 bg-white border-b flex items-center justify-between">
-            <h2 class="text-xl font-bold">Ajustes Experimento</h2>
-            <i onclick="showPage('menu')" class="fa-solid fa-check text-green-600 text-xl"></i>
-        </header>
-        <div class="p-6 space-y-4">
-            <input type="text" id="in-nom" placeholder="Nombre" class="w-full p-3 rounded-lg border">
-            <input type="text" id="in-mat" placeholder="Matrícula" class="w-full p-3 rounded-lg border">
-            <input type="text" id="in-car" placeholder="Carrera" class="w-full p-3 rounded-lg border">
-            <input type="text" id="in-cam" placeholder="Campus" class="w-full p-3 rounded-lg border">
-            <hr>
-            <div class="grid grid-cols-3 gap-2">
-                <input type="text" id="in-perc" placeholder="% Avance" class="p-2 border rounded">
-                <input type="text" id="in-prom" placeholder="Promedio" class="p-2 border rounded">
-                <input type="text" id="in-mats" placeholder="Mat (X/Y)" class="p-2 border rounded">
-            </div>
-            <hr>
-            <input type="text" id="in-clase" placeholder="Clase de hoy" class="w-full p-3 border rounded">
-            <input type="text" id="in-hora" placeholder="Horario" class="w-full p-3 border rounded">
-            <button onclick="save()" class="w-full bg-black text-white p-4 rounded-xl font-bold">GUARDAR TODO</button>
-        </div>
-    </div>
-
-    <nav id="nav" class="fixed bottom-0 w-full bg-white border-t py-3 flex justify-around z-50 hidden">
-        <button onclick="showPage('home')" class="nav-btn text-red-600 flex flex-col items-center"><i class="fa-solid fa-house text-xl"></i><span class="text-[10px]">Home</span></button>
-        <button onclick="showPage('credencial')" class="nav-btn text-gray-400 flex flex-col items-center"><i class="fa-solid fa-id-card text-xl"></i><span class="text-[10px]">Credencial</span></button>
-        <button class="nav-btn text-gray-400 flex flex-col items-center"><i class="fa-solid fa-circle-question text-xl"></i><span class="text-[10px]">CAE</span></button>
-        <button onclick="showPage('menu')" class="nav-btn text-gray-400 flex flex-col items-center"><i class="fa-solid fa-bars text-xl"></i><span class="text-[10px]">Menu</span></button>
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-3 flex justify-around items-center z-50">
+        <button onclick="showPage('home')" id="nav-home" class="nav-btn active"><i class="fa-solid fa-house text-xl"></i><span class="mt-1">Inicio</span></button>
+        <button onclick="showPage('credencial')" id="nav-credencial" class="nav-btn"><i class="fa-solid fa-id-card text-xl"></i><span class="mt-1">Credencial</span></button>
+        <button class="nav-btn"><i class="fa-solid fa-circle-question text-xl"></i><span class="mt-1">CAE</span></button>
+        <button onclick="showPage('config')" class="nav-btn"><i class="fa-solid fa-bars text-xl"></i><span class="mt-1">Menú</span></button>
     </nav>
 
     <script>
-        let data = JSON.parse(localStorage.getItem('uvm_v3')) || {
-            n: "Garcia Fernandez Antonio Jose",
+        let userData = JSON.parse(localStorage.getItem('uvm_v3')) || {
+            n: "GARCIA FERNANDEZ ANTONIO JOSE",
             m: "100240218",
-            c: "Lic En Medicina Veterin Y Zoo",
-            cp: "LOMAS VERDES",
-            pc: "72.22%",
-            pr: "8.35",
-            ma: "25/51",
-            cl: "Biología Animal",
-            hr: "07:00h - 09:59h"
+            c: "Lic En Medicina Veterin Y Zoo"
         };
 
-        function render() {
-            document.getElementById('hi-name').innerText = data.n;
-            document.getElementById('home-carrera').innerText = data.c;
-            document.getElementById('home-campus').innerText = data.cp;
-            document.getElementById('home-mat').innerText = data.m;
-            document.getElementById('home-perc').innerText = data.pc;
-            document.getElementById('home-prom').innerText = data.pr;
-            document.getElementById('home-mats').innerText = data.ma;
+        function update() {
+            document.getElementById('display-saludo').innerText = userData.n;
+            document.getElementById('display-nombre-cred').innerHTML = userData.n.split(' ').slice(0,2).join(' ') + '<br>' + userData.n.split(' ').slice(2).join(' ');
+            document.getElementById('display-mat-home').innerText = userData.m;
+            document.getElementById('display-mat-cred').innerText = userData.m;
+            document.getElementById('display-carrera-home').innerText = userData.c;
+            document.getElementById('display-carrera-cred').innerText = userData.c;
+            document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${userData.m}`;
+            document.getElementById('avatar-home').innerText = userData.n[0] + (userData.n.split(' ')[1] ? userData.n.split(' ')[1][0] : 'A');
             
-            document.getElementById('cred-nombre').innerText = data.n;
-            document.getElementById('cred-carrera').innerText = data.c;
-            document.getElementById('cred-campus').innerText = data.cp.toUpperCase();
-            document.getElementById('cred-mat').innerText = data.m;
-            document.getElementById('qr').src = `https://api.qrserver.com/v1/create-qr-code/?data=${data.m}`;
-            
-            document.getElementById('avatar-home').innerText = data.n.split(' ').map(x=>x[0]).join('').substring(0,2).toUpperCase();
-            
-            document.getElementById('agenda-list').innerHTML = `
-                <div class="bg-[#e57373] p-4 rounded-xl text-white shadow-sm">
-                    <p class="font-bold">${data.cl}</p>
-                    <p class="text-sm opacity-90">${data.hr} , Salón 10-VET1</p>
-                </div>
-            `;
-
-            // Inputs
-            document.getElementById('in-nom').value = data.n;
-            document.getElementById('in-mat').value = data.m;
-            document.getElementById('in-car').value = data.c;
-            document.getElementById('in-cam').value = data.cp;
-            document.getElementById('in-perc').value = data.pc;
-            document.getElementById('in-prom').value = data.pr;
-            document.getElementById('in-mats').value = data.ma;
-            document.getElementById('in-clase').value = data.cl;
-            document.getElementById('in-hora').value = data.hr;
+            document.getElementById('in-nom').value = userData.n;
+            document.getElementById('in-mat').value = userData.m;
+            document.getElementById('in-car').value = userData.c;
         }
 
         function save() {
-            data = {
-                n: document.getElementById('in-nom').value,
+            userData = {
+                n: document.getElementById('in-nom').value.toUpperCase(),
                 m: document.getElementById('in-mat').value,
-                c: document.getElementById('in-car').value,
-                cp: document.getElementById('in-cam').value,
-                pc: document.getElementById('in-perc').value,
-                pr: document.getElementById('in-prom').value,
-                ma: document.getElementById('in-mats').value,
-                cl: document.getElementById('in-clase').value,
-                hr: document.getElementById('in-hora').value
+                c: document.getElementById('in-car').value
             };
-            localStorage.setItem('uvm_v3', JSON.stringify(data));
-            render();
+            localStorage.setItem('uvm_v3', JSON.stringify(userData));
+            update();
             showPage('home');
         }
 
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            
-            const btns = document.querySelectorAll('.nav-btn');
-            btns.forEach(b => b.classList.replace('text-red-600', 'text-gray-400'));
-            if(id === 'home') btns[0].classList.replace('text-gray-400', 'text-red-600');
-            if(id === 'credencial') btns[1].classList.replace('text-gray-400', 'text-red-600');
-            if(id === 'menu') btns[3].classList.replace('text-gray-400', 'text-red-600');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById('nav-' + id);
+            if(btn) btn.classList.add('active');
         }
 
-        setTimeout(() => {
-            document.getElementById('splash').classList.remove('active');
-            document.getElementById('home').classList.add('active');
-            document.getElementById('nav').classList.remove('hidden');
-            render();
-        }, 1500);
+        update();
     </script>
 </body>
 </html>
