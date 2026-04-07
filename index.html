@@ -24,27 +24,25 @@
         .cred-card {
             width: 90%;
             max-width: 380px;
-            background-color: #fff1f2; /* El rosa exacto */
+            background-color: #fff1f2; 
             border-radius: 1.5rem;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-top: 20px;
         }
         
-        /* Diseño de cabecera sólido con semicírculo (Corrección de Logo) */
         .cred-header-red { 
             background-color: #e32219; 
-            padding: 1.5rem 1.5rem 3rem 1.5rem; /* pt-6, px-6, pb-12 */
+            padding: 1.5rem 1.5rem 3rem 1.5rem; 
             display: flex;
             justify-content: center;
             position: relative;
         }
         
-        /* El semicírculo rojo sólido característico */
         .cred-header-red::after {
             content: '';
             position: absolute;
-            bottom: -25px; /* Mitad de la altura */
+            bottom: -25px; 
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
@@ -54,7 +52,6 @@
             z-index: 1;
         }
         
-        /* Contenedor del QR con padding blanco */
         .qr-container {
             background: white;
             padding: 10px;
@@ -119,7 +116,7 @@
                     <div class="pt-8 pb-16 text-center px-4 relative z-0">
                         <p class="text-[#e32219] font-bold text-[13px] mb-1">Estudiante</p>
                         <h2 class="text-[20px] font-black leading-tight text-gray-800 mb-2 uppercase" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
-                        <p class="text-[12px] text-gray-600 font-bold leading-tight">
+                        <p class="text-[13.5px] text-gray-600 font-bold leading-tight">
                             <span id="display-carrera-cred">Bachillerato - Preparatoria Unam</span><br>
                             Campus LOMAS VERDES
                         </p>
@@ -129,8 +126,8 @@
                         </div>
 
                         <div class="flex flex-col items-center -space-y-1 mt-0"> 
-                            <p class="text-[22px] font-bold text-gray-800" id="display-mat-cred">100240218</p>
-                            <p class="text-[10px] text-gray-400 font-bold -mt-3 uppercase italic tracking-wider">VIGENCIA: NO VIGENTE</p>
+                            <p class="text-[18px] font-semibold text-gray-800" id="display-mat-cred">100240218</p>
+                            <p class="text-[10px] text-gray-400 font-normal -mt-3 uppercase tracking-tight">VIGENCIA: NO VIGENTE</p>
                         </div>
                     </div>
                 </div>
@@ -167,7 +164,6 @@
     </div>
 
     <script>
-        // Datos iniciales
         let data = {
             n: "GARCIA FERNANDEZ ANTONIO JOSE",
             m: "100240218",
@@ -175,13 +171,11 @@
         };
 
         function updateUI() {
-            // Home (SIN CAMBIOS)
             document.getElementById('display-saludo').innerText = data.n;
             document.getElementById('display-carrera-home').innerText = data.c;
             document.getElementById('display-mat-home').innerText = data.m;
             document.getElementById('avatar-home').innerText = data.n + (data.n.split(' ') ? data.n.split(' ') : '');
             
-            // Credencial (REVISADA)
             const nombreSplit = data.n.split(' ');
             const formattedName = nombreSplit.slice(0, 2).join(' ') + '<br>' + nombreSplit.slice(2).join(' ');
             document.getElementById('display-nombre-cred').innerHTML = formattedName;
@@ -190,7 +184,6 @@
             document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data.m}`;
         }
 
-        // Función para abrir la configuración precargando los datos
         function openConfig() {
             document.getElementById('in-nom').value = data.n;
             document.getElementById('in-mat').value = data.m;
@@ -208,36 +201,23 @@
             if(c) data.c = c;
             
             updateUI();
-            showPage('home'); // Regresa al home tras guardar
+            showPage('home');
         }
 
         function showPage(id) {
-            // Ocultar todas las páginas
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Mostrar la seleccionada
             document.getElementById(id).classList.add('active');
             
-            // Actualizar colores del Navbar
-            const navButtons = {
-                'home': 'btn-home',
-                'credencial': 'btn-credencial',
-                'config': 'btn-config'
-            };
-            
+            const navButtons = { 'home': 'btn-home', 'credencial': 'btn-credencial', 'config': 'btn-config' };
             Object.values(navButtons).forEach(btnId => {
                 const btn = document.getElementById(btnId);
-                if(btn) {
-                    btn.classList.replace('text-red-600', 'text-gray-400');
-                }
+                if(btn) btn.classList.replace('text-red-600', 'text-gray-400');
             });
 
             const activeBtn = document.getElementById(navButtons[id]);
-            if(activeBtn) {
-                activeBtn.classList.replace('text-gray-400', 'text-red-600');
-            }
+            if(activeBtn) activeBtn.classList.replace('text-gray-400', 'text-red-600');
         }
 
-        // Inicializar
         updateUI();
     </script>
 </body>
