@@ -32,22 +32,49 @@
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
         
         /* ESTILOS ESPECÍFICOS CREDENCIAL (MODIFICADOS) */
-        /* Rojo UVM con semicírculo (Ajustado) */
-        .cred-header { 
-            background-color: #ef5350; 
-            border-radius: 2.5rem 2.5rem 0 0; 
-            padding-top: 2rem; /* pt-8 */
-            padding-bottom: 2.5rem; /* pb-10 */
+        .cred-container {
+            width: 90%;
+            max-width: 380px;
+            margin: 15px auto;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Sombra muy sutil */
         }
-        
-        /* Fondo rosado y bordes (Ajustado) */
+        .cred-header { 
+            background-color: #d32f2f; /* Rojo UVM más refinado */
+            padding: 25px 20px 45px 20px; /* Padding reducido en cabecera */
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        /* Semicírculo rojo característico (más pequeño) */
+        .cred-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 45px;
+            background-color: #d32f2f;
+            border-radius: 0 0 90px 90px;
+            z-index: 1;
+        }
         .cred-body { 
-            background-color: #fffcfc; 
-            border-radius: 0 0 2.5rem 2.5rem; 
-            border: 1px solid #fecaca; 
-            border-top: none;
-            padding-top: 4rem; /* pt-16 */
-            padding-bottom: 2.5rem; /* pb-10 */
+            background-color: #fff1f2; /* Fondo Rosita del centro */
+            padding: 40px 15px 25px 15px; /* Padding reducido en el cuerpo */
+            text-align: center;
+            position: relative;
+            z-index: 0;
+        }
+        /* Contenedor del QR más pequeño y sin bordes toscos */
+        .qr-wrapper {
+            background: white;
+            padding: 8px;
+            display: inline-block;
+            border-radius: 0.5rem; /* Pequeño redondeo */
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
     </style>
 </head>
