@@ -12,18 +12,18 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* --- HOME: ESTILOS --- */
+        /* --- HOME: CONTENEDORES CON BORDES 3% MÁS OSCUROS --- */
         .card-uvm-home { 
-            background: white; border: 1.5px solid #e5e7eb; border-radius: 1.1rem; 
+            background: white; border: 1.5px solid #d1d5db; border-radius: 1.1rem; 
             padding: 1.25rem 1rem; margin-bottom: 0.9rem; box-shadow: none !important;
         }
-        /* Beca: Azul +5% saturación y borde +5% oscuro */
+        /* Beca: Fuente +5% y ajuste de estructura */
         .beca-container { 
             background-color: #e0f2ff; border: 1.5px solid #7dd3fc; border-radius: 1.1rem; 
-            padding: 1.25rem 1rem; margin-bottom: 1.2rem; box-shadow: none !important;
+            padding: 1.3rem 1.1rem; margin-bottom: 1.2rem; box-shadow: none !important;
         }
         .agenda-container-home { 
-            background: white; border: 1.5px solid #e5e7eb; border-radius: 1rem; 
+            background: white; border: 1.5px solid #d1d5db; border-radius: 1rem; 
             padding: 1rem; box-shadow: none !important;
         }
         .materia-item { 
@@ -34,12 +34,11 @@
         }
         .materia-text { font-weight: 800; font-size: 12px; color: #000; display: block; }
         
-        /* --- CREDENCIAL: AJUSTES --- */
+        /* --- CREDENCIAL: AJUSTES DE ESPACIADO COMPACTO --- */
         .cred-card {
             width: 90%; max-width: 380px; background-color: #fff1f2; 
             border-radius: 1.5rem; overflow: hidden; margin-top: 20px;
         }
-        /* Rojo -5% saturación */
         .cred-header-red { 
             background-color: #d62d25; padding: 1.5rem 1.5rem 3rem 1.5rem; 
             display: flex; justify-content: center; position: relative;
@@ -72,19 +71,20 @@
             
             <div class="card-uvm-home">
                 <h2 class="text-[16px] font-bold text-black mb-1">Lic En Medicina Veterin Y Zoo</h2>
-                <p class="text-[13px] text-gray-500 font-medium">Campus Lomas Verdes - Matrícula 100240218</p>
+                <p class="text-[13px] text-gray-500 font-normal opacity-100">Campus Lomas Verdes - Matrícula 100240218</p>
             </div>
 
             <div class="beca-container">
-                <p class="text-[13px] text-black font-semibold leading-snug">¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.</p>
+                <p class="text-[13.7px] text-black font-semibold leading-snug">¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.</p>
             </div>
 
             <div class="agenda-container-home">
-                <div class="flex justify-between items-center mb-3">
+                <div class="flex justify-between items-baseline">
                     <h2 class="text-[18px] font-bold">Agenda</h2>
                     <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
                 </div>
-                <p class="font-bold text-[14px] mb-3">Martes 07 de abril</p>
+                <p class="font-bold text-[14px] -mt-1 mb-3">Martes 07 de abril</p>
+                
                 <div id="agenda-list" class="space-y-1">
                     <div class="materia-item">
                         <span class="materia-text">Cirugía de Pequeñas Especies</span>
@@ -109,7 +109,7 @@
                 <div class="flex justify-between items-center mb-3"><h2 class="text-[17px] font-bold">Avance académico</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
                 <div class="flex justify-between text-center">
                     <div class="flex-1"><p class="text-[17px] font-bold">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p></div>
-                    <div class="flex-1 border-x border-gray-100"><p class="text-[17px] font-bold">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
+                    <div class="flex-1 border-x border-gray-300"><p class="text-[17px] font-bold">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
                     <div class="flex-1"><p class="text-[17px] font-bold">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
                 </div>
             </div>
@@ -130,15 +130,17 @@
 
                     <div class="pt-8 pb-24 text-center px-4 relative z-0">
                         <p class="text-[#e32219] font-bold text-[13px] mb-1">Estudiante</p>
-                        <h2 class="text-[20px] font-black leading-tight text-gray-800 mb-6 uppercase max-w-[200px] mx-auto">
-                            GARCIA FERNANDEZ<br>ANTONIO JOSE
+                        <h2 class="text-[20px] font-black leading-tight text-gray-800 mb-1 uppercase max-w-[280px] mx-auto">
+                            GARCIA FERNANDEZ ANTONIO JOSE
                         </h2>
-                        <p class="text-[13.5px] text-gray-600 font-bold leading-tight max-w-[250px] mx-auto">
-                            Licenciatura - Lic en Medicina Veterin y Zoo
-                        </p>
-                        <p class="text-[13.5px] text-gray-600 font-bold mt-4 opacity-95">
-                            Campus LOMAS VERDES
-                        </p>
+                        <div class="max-w-[210px] mx-auto mt-1">
+                            <p class="text-[13.5px] text-gray-600 font-bold leading-tight">
+                                Licenciatura - Lic en Medicina Veterin y Zoo
+                            </p>
+                            <p class="text-[13.5px] text-gray-600 font-bold mt-0.5 opacity-95">
+                                Campus LOMAS VERDES
+                            </p>
+                        </div>
                         
                         <div class="qr-container">
                             <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=100240218" class="w-36 h-36">
