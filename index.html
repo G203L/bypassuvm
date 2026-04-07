@@ -8,6 +8,156 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        body { font-family: -apple-system, system-ui, sans-serif; background-color: #f8f9fa; color: #000; letter-spacing: -0.01em; }
+        .page { display: none; min-height: 100vh; }
+        .page.active { display: block; }
+        
+        /* Contenedores más compactos y con bordes finos */
+        .card-uvm { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 0.75rem; margin-bottom: 0.6rem; }
+        
+        /* Agenda Estilo Original */
+        .agenda-container { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 0.75rem; }
+        .materia-item {
+            background-color: #fca5a5; /* Rojo Pastel Desaturado Sólido */
+            border-radius: 0.6rem;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .materia-titulo { font-weight: 800; font-size: 13.5px; color: #000; line-height: 1.1; }
+        .materia-detalle { font-size: 10.5px; color: #000; font-weight: 700; margin-top: 1px; opacity: 0.9; }
+        
+        /* Iconos Nav ajustados */
+        .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
+        .divider { border-right: 1px solid #f1f5f9; height: 100%; }
+    </style>
+</head>
+<body class="select-none">
+
+    <div id="home" class="page active pb-24">
+        <header class="flex justify-between items-center px-4 py-2.5 bg-white sticky top-0 z-50">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_UVM.png" class="h-5">
+            <div class="flex items-center gap-3">
+                <i class="fa-regular fa-bell text-lg text-black"></i>
+                <div onclick="showPage('config')" class="bg-[#c20e1a] text-white w-7 h-7 flex items-center justify-center rounded-full font-bold text-[10px]" id="avatar-home">GA</div>
+            </div>
+        </header>
+
+        <main class="px-4 mt-2">
+            <p class="text-lg px-0.5 mb-3">¡Hola, <span class="font-bold" id="display-saludo">Garcia Fernandez Antonio Jose!</span></p>
+            
+            <div class="card-uvm">
+                <h2 class="text-[15px] font-black text-black leading-tight" id="display-carrera-home">Lic En Medicina Veterin Y Zoo</h2>
+                <p class="text-[12px] text-gray-400 font-bold">Campus Lomas Verdes - <span class="text-black">100240218</span></p>
+            </div>
+
+            <div class="bg-[#e3f2fd] border border-blue-50 rounded-xl p-3 text-[12px] text-black font-bold mb-3 leading-tight">
+                Si cuentas con beca, realiza tus pagos en las fechas establecidas en tu renovación para no perder el beneficio.
+            </div>
+
+            <div class="agenda-container">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-[17px] font-black">Agenda</h2>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </div>
+                <p class="font-bold text-[13px] mb-2">Martes 07 de abril</p>
+                
+                <div id="agenda-list" class="space-y-1">
+                    <div class="materia-item">
+                        <span class="materia-titulo">Cirugía de Pequeñas Especies</span>
+                        <span class="materia-detalle">07:00H - 08:59H , SALÓN 10-VET1</span>
+                    </div>
+                    <div class="materia-item">
+                        <span class="materia-titulo">Patología Clínica</span>
+                        <span class="materia-detalle">09:00H - 10:59H , SALÓN 10-VET2</span>
+                    </div>
+                    <div class="materia-item">
+                        <span class="materia-titulo">Nutrición Animal Especializada</span>
+                        <span class="materia-detalle">11:00H - 12:59H , SALÓN 05-VET1</span>
+                    </div>
+                    <div class="materia-item">
+                        <span class="materia-titulo">Epidemiología Veterinaria</span>
+                        <span class="materia-detalle">13:00H - 14:59H , SALÓN 02-VET3</span>
+                    </div>
+                    <div class="materia-item">
+                        <span class="materia-titulo">Ética Médica</span>
+                        <span class="materia-detalle">15:00H - 16:59H , SALÓN 08-VET1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-uvm mt-3">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-[17px] font-black">Avance académico</h2>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </div>
+                <div class="flex justify-between text-center">
+                    <div class="flex-1">
+                        <p class="text-[17px] font-black">12.5%</p>
+                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p>
+                    </div>
+                    <div class="flex-1 border-x border-gray-100">
+                        <p class="text-[17px] font-black">9.40</p>
+                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-[17px] font-black">6/48</p>
+                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-2.5 flex justify-around items-center z-50">
+        <button class="flex flex-col items-center text-red-600">
+            <i class="fa-solid fa-house text-lg"></i><span class="nav-text">Inicio</span>
+        </button>
+        <button class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-id-card text-lg"></i><span class="nav-text">Credencial</span>
+        </button>
+        <button class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-circle-question text-lg"></i><span class="nav-text">CAE</span>
+        </button>
+        <button onclick="showPage('config')" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-bars text-lg"></i><span class="nav-text">Menú</span>
+        </button>
+    </nav>
+
+    <div id="config" class="page bg-white p-6">
+        <h2 class="text-xl font-bold mb-4">Ajustes Rápidos</h2>
+        <input type="text" id="in-nom" placeholder="Tu Nombre" class="w-full p-4 border rounded-xl mb-3">
+        <button onclick="save()" class="w-full bg-black text-white p-4 rounded-xl font-bold">GUARDAR</button>
+    </div>
+
+    <script>
+        function save() {
+            const n = document.getElementById('in-nom').value;
+            if(n) {
+                document.getElementById('display-saludo').innerText = n;
+                document.getElementById('avatar-home').innerText = n[0] + (n.split(' ')[1] ? n.split(' ')[1][0] : 'A');
+            }
+            showPage('home');
+        }
+
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>UVM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
         body { font-family: -apple-system, system-ui, sans-serif; background-color: #f8f9fa; color: #000; letter-spacing: -0.02em; }
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
