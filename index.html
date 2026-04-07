@@ -12,69 +12,50 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* Contenedores más compactos (RESTAURADO) */
+        /* Contenedores Home (SIN CAMBIOS) */
         .card-uvm { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 0.75rem; margin-bottom: 0.6rem; }
-        
-        /* Agenda Estilo Original (RESTAURADO) */
         .agenda-container { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 0.75rem; }
-        .materia-item {
-            background-color: #fca5a5; 
-            border-radius: 0.6rem;
-            padding: 0.5rem 0.8rem;
-            margin-bottom: 0.4rem;
-            display: flex;
-            flex-direction: column;
-        }
-
+        .materia-item { background-color: #fca5a5; border-radius: 0.6rem; padding: 0.5rem 0.8rem; margin-bottom: 0.4rem; display: flex; flex-direction: column; }
         .materia-titulo { font-weight: 800; font-size: 13.5px; color: #000; line-height: 1.1; }
         .materia-detalle { font-size: 10.5px; color: #000; font-weight: 700; margin-top: 1px; opacity: 0.9; }
-        
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
         
-        /* ESTILOS ESPECÍFICOS CREDENCIAL (MODIFICADOS) */
-        .cred-container {
-            width: 90%;
-            max-width: 380px;
-            margin: 15px auto;
-            border-radius: 2rem;
+        /* --- APARTADO CREDENCIAL ESTILO FOTO --- */
+        .cred-card {
+            width: 92%;
+            max-width: 400px;
+            background-color: #fff1f2; /* El rosa exacto de la foto */
+            border-radius: 2.5rem;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Sombra muy sutil */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
-        .cred-header { 
-            background-color: #d32f2f; /* Rojo UVM más refinado */
-            padding: 25px 20px 45px 20px; /* Padding reducido en cabecera */
+        .cred-header-red {
+            background-color: #e32219; /* Rojo UVM */
+            height: 160px;
             display: flex;
             justify-content: center;
+            align-items: center;
             position: relative;
         }
-        /* Semicírculo rojo característico (más pequeño) */
-        .cred-header::after {
+        /* El semicírculo rojo que baja */
+        .cred-header-red::after {
             content: '';
             position: absolute;
-            bottom: -20px;
+            bottom: -35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90px;
-            height: 45px;
-            background-color: #d32f2f;
-            border-radius: 0 0 90px 90px;
-            z-index: 1;
+            width: 110px;
+            height: 70px;
+            background-color: #e32219;
+            border-radius: 0 0 110px 110px;
         }
-        .cred-body { 
-            background-color: #fff1f2; /* Fondo Rosita del centro */
-            padding: 40px 15px 25px 15px; /* Padding reducido en el cuerpo */
-            text-align: center;
-            position: relative;
-            z-index: 0;
-        }
-        /* Contenedor del QR más pequeño y sin bordes toscos */
-        .qr-wrapper {
+        .cred-logo { width: 100px; margin-top: -20px; filter: brightness(0) invert(1); }
+        .qr-container {
             background: white;
-            padding: 8px;
+            padding: 10px;
             display: inline-block;
-            border-radius: 0.5rem; /* Pequeño redondeo */
-            margin: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border-radius: 0.5rem;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -88,98 +69,58 @@
                 <div onclick="showPage('config')" class="bg-[#c20e1a] text-white w-7 h-7 flex items-center justify-center rounded-full font-bold text-[10px]" id="avatar-home">GA</div>
             </div>
         </header>
-
         <main class="px-4 mt-2">
             <p class="text-lg px-0.5 mb-3">¡Hola, <span class="font-bold" id="display-saludo">Garcia Fernandez Antonio Jose!</span></p>
-            
             <div class="card-uvm">
                 <h2 class="text-[15px] font-black text-black leading-tight" id="display-carrera-home">Lic En Medicina Veterin Y Zoo</h2>
                 <p class="text-[12px] text-gray-400 font-bold">Campus Lomas Verdes - <span class="text-black" id="display-mat-home">100240218</span></p>
             </div>
-
-            <div class="bg-[#e3f2fd] border border-blue-50 rounded-xl p-3 text-[12px] text-black font-bold mb-3 leading-tight">
-                Si cuentas con beca, realiza tus pagos en las fechas establecidas en tu renovación para no perder el beneficio.
-            </div>
-
+            <div class="bg-[#e3f2fd] border border-blue-50 rounded-xl p-3 text-[12px] text-black font-bold mb-3 leading-tight">Si cuentas con beca, realiza tus pagos en las fechas establecidas en tu renovación para no perder el beneficio.</div>
             <div class="agenda-container">
-                <div class="flex justify-between items-center mb-2">
-                    <h2 class="text-[17px] font-black">Agenda</h2>
-                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-                </div>
+                <div class="flex justify-between items-center mb-2"><h2 class="text-[17px] font-black">Agenda</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
                 <p class="font-bold text-[13px] mb-2">Martes 07 de abril</p>
-                
                 <div id="agenda-list" class="space-y-1">
-                    <div class="materia-item">
-                        <span class="materia-titulo">Cirugía de Pequeñas Especies</span>
-                        <span class="materia-detalle">07:00H - 08:59H , SALÓN 10-VET1</span>
-                    </div>
-                    <div class="materia-item">
-                        <span class="materia-titulo">Patología Clínica</span>
-                        <span class="materia-detalle">09:00H - 10:59H , SALÓN 10-VET2</span>
-                    </div>
-                    <div class="materia-item">
-                        <span class="materia-titulo">Nutrición Animal Especializada</span>
-                        <span class="materia-detalle">11:00H - 12:59H , SALÓN 05-VET1</span>
-                    </div>
-                    <div class="materia-item">
-                        <span class="materia-titulo">Epidemiología Veterinaria</span>
-                        <span class="materia-detalle">13:00H - 14:59H , SALÓN 02-VET3</span>
-                    </div>
-                    <div class="materia-item">
-                        <span class="materia-titulo">Ética Médica</span>
-                        <span class="materia-detalle">15:00H - 16:59H , SALÓN 08-VET1</span>
-                    </div>
+                    <div class="materia-item"><span class="materia-titulo">Cirugía de Pequeñas Especies</span><span class="materia-detalle">07:00H - 08:59H , SALÓN 10-VET1</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Patología Clínica</span><span class="materia-detalle">09:00H - 10:59H , SALÓN 10-VET2</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Nutrición Animal Especializada</span><span class="materia-detalle">11:00H - 12:59H , SALÓN 05-VET1</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Epidemiología Veterinaria</span><span class="materia-detalle">13:00H - 14:59H , SALÓN 02-VET3</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Ética Médica</span><span class="materia-detalle">15:00H - 16:59H , SALÓN 08-VET1</span></div>
                 </div>
             </div>
-
             <div class="card-uvm mt-3">
-                <div class="flex justify-between items-center mb-3">
-                    <h2 class="text-[17px] font-black">Avance académico</h2>
-                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-                </div>
+                <div class="flex justify-between items-center mb-3"><h2 class="text-[17px] font-black">Avance académico</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
                 <div class="flex justify-between text-center">
-                    <div class="flex-1">
-                        <p class="text-[17px] font-black">12.5%</p>
-                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p>
-                    </div>
-                    <div class="flex-1 border-x border-gray-100">
-                        <p class="text-[17px] font-black">9.40</p>
-                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p>
-                    </div>
-                    <div class="flex-1">
-                        <p class="text-[17px] font-black">6/48</p>
-                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p>
-                    </div>
+                    <div class="flex-1"><p class="text-[17px] font-black">12.5%</p><p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p></div>
+                    <div class="flex-1 border-x border-gray-100"><p class="text-[17px] font-black">9.40</p><p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
+                    <div class="flex-1"><p class="text-[17px] font-black">6/48</p><p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
                 </div>
             </div>
         </main>
     </div>
 
     <div id="credencial" class="page bg-white">
-        <div class="flex flex-col items-center pt-10 h-screen">
-            <div class="w-[95%] cred-header flex flex-col items-center relative shadow-sm">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-200">
-                <div class="absolute -bottom-10 w-24 h-24 bg-white rounded-full border-4 border-white overflow-hidden shadow-sm">
-                    <div class="w-full h-full bg-gray-50 flex items-center justify-center">
-                        <i class="fa-solid fa-user text-gray-200 text-5xl"></i>
+        <div class="flex flex-col items-center pt-8">
+            <div class="cred-card">
+                <div class="cred-header-red">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="cred-logo">
+                </div>
+                
+                <div class="pt-16 pb-10 text-center px-4">
+                    <p class="text-[#e32219] font-bold text-[14px] mb-1">Estudiante</p>
+                    <h2 class="text-[22px] font-black text-[#1a1a1b] leading-tight mb-2" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
+                    <p class="text-[13px] text-[#4a4a4a] font-semibold leading-tight">
+                        Bachillerato - <span id="display-carrera-cred">Preparatoria Unam</span><br>
+                        Campus LOMAS VERDES
+                    </p>
+                    
+                    <div class="qr-container">
+                        <img id="qr-img" class="w-40 h-40">
+                    </div>
+
+                    <div class="flex flex-col items-center -space-y-1"> <p class="text-[22px] font-black tracking-widest text-[#1a1a1b]" id="display-mat-cred">100240218</p>
+                        <p class="text-[11px] text-gray-400 font-bold uppercase tracking-tighter">VIGENCIA: NO VIGENTE</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="w-[95%] cred-body px-6 text-center shadow-md">
-                <p class="text-[#ef4444] font-black text-[11px] uppercase tracking-[0.2em] mb-2">Estudiante</p>
-                <h2 class="text-2xl font-black leading-tight text-gray-800 mb-2 uppercase" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
-                <p class="text-[13px] text-gray-500 font-bold leading-tight">
-                    Licenciatura - <span id="display-carrera-cred">Lic En Medicina Veterin Y Zoo</span><br>
-                    Campus LOMAS VERDES
-                </p>
-                
-                <div class="mt-8 flex justify-center">
-                    <img id="qr-img" class="w-44 h-44 p-1 bg-white border border-gray-100 rounded-lg">
-                </div>
-
-                <p class="text-2xl font-black mt-2 tracking-[0.15em] text-gray-800" id="display-mat-cred">100240218</p>
-                <p class="text-[14px] text-gray-400 font-black mt-1 uppercase italic tracking-wider">NO VIGENTE</p>
             </div>
         </div>
     </div>
@@ -213,21 +154,12 @@
     </div>
 
     <script>
-        // Datos iniciales (RESTAURADO)
-        let data = {
-            n: "GARCIA FERNANDEZ ANTONIO JOSE",
-            m: "100240218",
-            c: "Lic En Medicina Veterin Y Zoo"
-        };
-
+        let data = { n: "GARCIA FERNANDEZ ANTONIO JOSE", m: "100240218", c: "Preparatoria Unam" };
         function updateUI() {
-            // Home
             document.getElementById('display-saludo').innerText = data.n;
             document.getElementById('display-carrera-home').innerText = data.c;
             document.getElementById('display-mat-home').innerText = data.m;
             document.getElementById('avatar-home').innerText = data.n[0] + (data.n.split(' ')[1] ? data.n.split(' ')[1][0] : '');
-            
-            // Credencial
             const nombreSplit = data.n.split(' ');
             const formattedName = nombreSplit.slice(0, 2).join(' ') + '<br>' + nombreSplit.slice(2).join(' ');
             document.getElementById('display-nombre-cred').innerHTML = formattedName;
@@ -235,47 +167,24 @@
             document.getElementById('display-mat-cred').innerText = data.m;
             document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data.m}`;
         }
-
         function save() {
             const n = document.getElementById('in-nom').value.toUpperCase();
             const m = document.getElementById('in-mat').value;
-            const c = document.getElementById('in-car').value.toUpperCase();
-            
-            if(n) data.n = n;
-            if(m) data.m = m;
-            if(c) data.c = c;
-            
-            updateUI();
-            showPage('home');
+            const c = document.getElementById('in-car').value;
+            if(n) data.n = n; if(m) data.m = m; if(c) data.c = c;
+            updateUI(); showPage('home');
         }
-
         function showPage(id) {
-            // Ocultar todas las páginas
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Mostrar la seleccionada
             document.getElementById(id).classList.add('active');
-            
-            // Actualizar colores del Navbar
-            const navButtons = {
-                'home': 'btn-home',
-                'credencial': 'btn-credencial',
-                'config': 'btn-config'
-            };
-            
+            const navButtons = {'home': 'btn-home', 'credencial': 'btn-credencial', 'config': 'btn-config'};
             Object.values(navButtons).forEach(btnId => {
                 const btn = document.getElementById(btnId);
-                if(btn) {
-                    btn.classList.replace('text-red-600', 'text-gray-400');
-                }
+                if(btn) btn.classList.replace('text-red-600', 'text-gray-400');
             });
-
             const activeBtn = document.getElementById(navButtons[id]);
-            if(activeBtn) {
-                activeBtn.classList.replace('text-gray-400', 'text-red-600');
-            }
+            if(activeBtn) activeBtn.classList.replace('text-gray-400', 'text-red-600');
         }
-
-        // Inicializar
         updateUI();
     </script>
 </body>
