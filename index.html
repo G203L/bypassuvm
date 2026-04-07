@@ -12,36 +12,33 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* --- HOME: CONTENEDORES MÁS GRANDES Y PLANOS --- */
+        /* --- HOME: CONTENEDORES PLANOS Y AMPLIOS --- */
         .card-uvm-home { 
             background: white; 
             border: 1.5px solid #e5e7eb; 
             border-radius: 1.1rem; 
-            padding: 1.25rem 1rem; /* Padding aumentado */
+            padding: 1.25rem 1rem; 
             margin-bottom: 0.9rem; 
-            box-shadow: none !important;
         }
         .beca-container { 
             background-color: #f0f9ff; 
             border: 1.5px solid #bae6fd; 
             border-radius: 1.1rem; 
-            padding: 1.25rem 1rem; /* Padding aumentado */
+            padding: 1.25rem 1rem; 
             margin-bottom: 1.2rem;
-            box-shadow: none !important;
         }
         .agenda-container-home { 
             background: white; 
             border: 1.5px solid #e5e7eb; 
             border-radius: 1rem; 
             padding: 1rem; 
-            box-shadow: none !important;
         }
 
-        /* Tira de materias: Texto centrado verticalmente */
+        /* Tira de materias: Centrado vertical y line-height */
         .materia-item { 
             background-color: #fca5a5; 
             border-radius: 0.6rem; 
-            padding: 0.65rem 0.8rem; /* Ajuste para centrar */
+            padding: 0.65rem 0.8rem; 
             margin-bottom: 0.5rem; 
             display: flex; 
             flex-direction: column;
@@ -52,8 +49,17 @@
         
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
         
-        /* --- CREDENCIAL (SIN CAMBIOS) --- */
-        .cred-card { width: 90%; max-width: 380px; background-color: #fff1f2; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px; }
+        /* --- BLOQUE AVANCE ACADÉMICO --- */
+        .avance-card {
+            background: white;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 1.25rem 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        /* --- CREDENCIAL (MANTENIDA) --- */
+        .cred-card { width: 90%; max-width: 380px; background-color: #fff1f2; border-radius: 1.5rem; overflow: hidden; margin-top: 20px; }
         .cred-header-red { background-color: #e32219; padding: 1.5rem 1.5rem 3rem 1.5rem; display: flex; justify-content: center; position: relative; }
         .cred-header-red::after { content: ''; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); width: 80px; height: 50px; background-color: #e32219; border-radius: 0 0 100px 100px; z-index: 1; }
         .qr-container { background: white; padding: 10px; display: inline-block; border-radius: 0.5rem; margin: 15px 0; }
@@ -88,20 +94,24 @@
                 </div>
                 <p class="font-bold text-[14px] mb-3">Martes 07 de abril</p>
                 <div id="agenda-list" class="space-y-1">
-                    <div class="materia-item">
-                        <span class="materia-titulo">Cirugía de Pequeñas Especies</span>
-                        <span class="materia-detalle">07:00H - 08:59H , SALÓN 10-VET1</span>
-                    </div>
-                    <div class="materia-item">
-                        <span class="materia-titulo">Patología Clínica</span>
-                        <span class="materia-detalle">09:00H - 10:59H , SALÓN 10-VET2</span>
-                    </div>
+                    <div class="materia-item"><span class="materia-titulo">Cirugía de Pequeñas Especies</span><span class="materia-detalle">07:00H - 08:59H , SALÓN 10-VET1</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Patología Clínica</span><span class="materia-detalle">09:00H - 10:59H , SALÓN 10-VET2</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Nutrición Animal Especializada</span><span class="materia-detalle">11:00H - 12:59H , SALÓN 05-VET1</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Epidemiología Veterinaria</span><span class="materia-detalle">13:00H - 14:59H , SALÓN 02-VET3</span></div>
+                    <div class="materia-item"><span class="materia-titulo">Ética Médica</span><span class="materia-detalle">15:00H - 16:59H , SALÓN 08-VET1</span></div>
                 </div>
             </div>
 
-            <div class="flex justify-between items-center mt-6 mb-2 px-1">
+            <div class="flex justify-between items-center mt-6 mb-1 px-1">
                 <h2 class="text-[18px] font-bold">Avance académico</h2>
                 <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+            </div>
+            <div class="avance-card">
+                <div class="flex justify-between text-center">
+                    <div class="flex-1"><p class="text-[18px] font-black">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p></div>
+                    <div class="flex-1 border-x border-gray-100"><p class="text-[18px] font-black">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
+                    <div class="flex-1"><p class="text-[18px] font-black">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
+                </div>
             </div>
         </main>
     </div>
