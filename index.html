@@ -4,99 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>UVM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, system-ui, sans-serif; background-color: #f8f9fa; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f9fafb; color: #1a1a1a; }
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
-        /* Bordes específicos solicitados */
-        .card-uvm { background: white; border: 1px solid #d1d5db; border-radius: 1rem; padding: 1.25rem; }
-        .nav-btn { color: #9ca3af; flex-direction: column; display: flex; align-items: center; font-size: 10px; }
-        .nav-btn.active { color: #c20e1a; }
+        /* Bordes finos y colores pálidos */
+        .border-thin { border: 1px solid #e5e7eb; }
+        .card-base { background: white; border: 1px solid #e5e7eb; border-radius: 1.25rem; padding: 1rem; }
+        .materia-card { background-color: #fca5a5; border: 1px solid #f87171; border-radius: 0.75rem; padding: 0.6rem 1rem; }
     </style>
 </head>
 <body class="select-none">
 
     <div id="home" class="page active pb-28">
-        <header class="flex justify-between items-center px-5 py-4 bg-white sticky top-0 z-50">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_UVM.png" alt="UVM" class="h-8">
-            <div class="flex items-center gap-4">
-                <i class="fa-regular fa-bell text-2xl text-gray-700"></i>
-                <div onclick="showPage('config')" class="bg-[#c20e1a] text-white w-9 h-9 flex items-center justify-center rounded-full font-bold text-sm" id="avatar-home">GA</div>
+        <header class="flex justify-between items-center px-5 py-3 bg-white sticky top-0 z-50">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_UVM.png" alt="UVM" class="h-7">
+            <div class="flex items-center gap-4 text-gray-500">
+                <i class="fa-regular fa-bell text-2xl"></i>
+                <div onclick="showPage('config')" class="bg-[#c20e1a] text-white w-8 h-8 flex items-center justify-center rounded-full font-bold text-xs" id="avatar-home">GA</div>
             </div>
         </header>
 
-        <main class="px-4 mt-3 space-y-4">
-            <p class="text-xl font-normal px-1">¡Hola, <span class="font-bold" id="display-saludo">Garcia Fernandez Antonio Jose!</span></p>
+        <main class="px-4 mt-4 space-y-4">
+            <p class="text-xl font-light px-1">¡Hola, <span class="font-bold" id="display-saludo">Garcia Fernandez Antonio Jose!</span></p>
             
-            <div class="card-uvm shadow-sm">
-                <h2 class="text-[17px] font-bold text-gray-800" id="display-carrera-home">Lic En Medicina Veterin Y Zoo</h2>
-                <p class="text-sm text-gray-500 mt-1">Campus Lomas Verdes - Matrícula <span id="display-mat-home">100240218</span></p>
+            <div class="card-base shadow-sm">
+                <h2 class="text-[16px] font-bold text-gray-800 leading-tight" id="display-carrera-home">Lic En Medicina Veterin Y Zoo</h2>
+                <p class="text-[13px] text-gray-400 mt-1">Campus Lomas Verdes - Matrícula <span id="display-mat-home">100240218</span></p>
             </div>
 
-            <div class="bg-[#e1f5fe] border border-[#b3e5fc] rounded-2xl p-4 text-[14px] leading-snug text-gray-700">
+            <div class="bg-[#f0f9ff] border border-[#e0f2fe] rounded-2xl p-4 text-[13px] leading-snug text-gray-600">
                 Si cuentas con beca, realiza tus pagos en las fechas establecidas en tu renovación para no perder el beneficio.
             </div>
 
-            <section>
-                <div class="flex justify-between items-center mb-2 px-1">
-                    <h2 class="text-xl font-bold text-gray-900">Agenda</h2>
-                    <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+            <div class="border-thin rounded-2xl p-4 bg-white shadow-sm">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg font-bold text-gray-800">Agenda</h2>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
                 </div>
-                <p class="font-bold text-[15px] mb-3 px-1 text-gray-900">Martes 07 de abril</p>
+                <p class="font-bold text-[14px] mb-3 text-gray-800">Martes 07 de abril</p>
                 
                 <div id="agenda-container" class="space-y-2">
-                    <div class="bg-[#d32f2f] p-4 rounded-xl shadow-sm border border-red-800">
-                        <p class="font-bold text-black text-[16px]">Cirugía de Pequeñas Especies</p>
-                        <p class="text-black text-sm font-medium opacity-80">07:00h - 08:59h , Salón 10-VET1</p>
+                    <div class="materia-card">
+                        <p class="font-bold text-black text-[15px]">Cirugía de Pequeñas Especies</p>
+                        <p class="text-black text-[12px] font-medium opacity-70 uppercase">07:00H - 08:59H , SALÓN 10-VET1</p>
                     </div>
-                    <div class="bg-[#d32f2f] p-4 rounded-xl shadow-sm border border-red-800">
-                        <p class="font-bold text-black text-[16px]">Patología Clínica</p>
-                        <p class="text-black text-sm font-medium opacity-80">09:00h - 10:59h , Salón 10-VET2</p>
+                    <div class="materia-card">
+                        <p class="font-bold text-black text-[15px]">Patología Clínica</p>
+                        <p class="text-black text-[12px] font-medium opacity-70 uppercase">09:00H - 10:59H , SALÓN 10-VET2</p>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <div class="card-uvm shadow-sm mt-2">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold text-gray-900">Avance académico</h2>
-                    <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+            <div class="card-base shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">Avance académico</h2>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
                 </div>
-                <div class="flex justify-between text-center px-2">
-                    <div><p class="text-2xl font-bold text-gray-900">12.5%</p><p class="text-[10px] text-gray-400 font-bold uppercase mt-1">Avance</p></div>
-                    <div><p class="text-2xl font-bold text-gray-900">9.40</p><p class="text-[10px] text-gray-400 font-bold uppercase mt-1">Promedio</p></div>
-                    <div><p class="text-2xl font-bold text-gray-900">6/48</p><p class="text-[10px] text-gray-400 font-bold uppercase mt-1">Materias</p></div>
+                <div class="flex justify-between text-center">
+                    <div><p class="text-xl font-bold text-gray-800">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase">Avance</p></div>
+                    <div><p class="text-xl font-bold text-gray-800">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase">Promedio</p></div>
+                    <div><p class="text-xl font-bold text-gray-800">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase">Materias</p></div>
                 </div>
             </div>
         </main>
     </div>
 
     <div id="credencial" class="page bg-white">
-        <div class="flex flex-col items-center pt-8 h-screen">
-            <div class="w-[92%] bg-[#ef5350] rounded-t-[2.5rem] pt-8 pb-10 flex flex-col items-center relative">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_UVM.png" class="h-10 brightness-200 contrast-200">
-                <div class="absolute -bottom-10 w-20 h-20 bg-white rounded-full border-4 border-white overflow-hidden shadow-md">
-                    <div class="w-full h-full bg-gray-100 flex items-center justify-center">
-                        <i class="fa-solid fa-user text-gray-300 text-4xl"></i>
+        <div class="flex flex-col items-center pt-6 h-screen">
+            <div class="w-[92%] bg-[#f87171] rounded-t-[2.5rem] pt-8 pb-10 flex flex-col items-center relative">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_UVM.png" class="h-9 brightness-200">
+                <div class="absolute -bottom-10 w-20 h-20 bg-white rounded-full border-4 border-white overflow-hidden shadow-sm">
+                    <div class="w-full h-full bg-gray-50 flex items-center justify-center">
+                        <i class="fa-solid fa-user text-gray-200 text-4xl"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="w-[92%] bg-[#fff5f5] rounded-b-[2.5rem] pt-14 pb-12 px-6 text-center shadow-lg border border-red-50">
-                <p class="text-[#c20e1a] font-bold text-xs uppercase tracking-widest mb-2">Estudiante</p>
-                <h2 class="text-2xl font-black leading-tight text-gray-900 mb-2 uppercase" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
-                <p class="text-sm text-gray-700 font-medium leading-tight">Licenciatura - <span id="display-carrera-cred">Lic En Medicina Veterin Y Zoo</span><br>Campus LOMAS VERDES</p>
+            <div class="w-[92%] bg-[#fffcfc] rounded-b-[2.5rem] pt-14 pb-10 px-6 text-center shadow-md border border-red-50">
+                <p class="text-[#ef4444] font-bold text-[10px] uppercase tracking-widest mb-2">Estudiante</p>
+                <h2 class="text-2xl font-black leading-tight text-gray-800 mb-2 uppercase" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
+                <p class="text-[13px] text-gray-500 font-medium leading-tight">Licenciatura - <span id="display-carrera-cred">Lic En Medicina Veterin Y Zoo</span><br>Campus LOMAS VERDES</p>
                 
                 <div class="mt-8 flex justify-center">
-                    <img id="qr-img" class="w-44 h-44 p-2 bg-white rounded-lg shadow-sm border border-gray-100">
+                    <img id="qr-img" class="w-40 h-40 p-1 bg-white border border-gray-100 rounded-lg">
                 </div>
 
-                <p class="text-2xl font-black mt-4 tracking-[0.1em] text-gray-900" id="display-mat-cred">100240218</p>
+                <p class="text-2xl font-black mt-3 tracking-widest text-gray-800" id="display-mat-cred">100240218</p>
                 
-                <p class="text-sm text-red-600 font-black mt-6 uppercase italic">NO VIGENTE</p>
+                <p class="text-[13px] text-red-600 font-black mt-6 uppercase italic">NO VIGENTE</p>
             </div>
         </div>
     </div>
@@ -104,25 +103,25 @@
     <div id="config" class="page bg-white p-6">
         <div class="flex items-center gap-4 mb-8">
             <i onclick="showPage('home')" class="fa-solid fa-arrow-left text-xl"></i>
-            <h2 class="text-2xl font-bold">Editar Datos</h2>
+            <h2 class="text-2xl font-bold">Configuración</h2>
         </div>
         <div class="space-y-4">
-            <input type="text" id="in-nom" placeholder="Nombre" class="w-full p-4 rounded-xl border border-gray-300">
-            <input type="text" id="in-mat" placeholder="Matrícula" class="w-full p-4 rounded-xl border border-gray-300">
-            <input type="text" id="in-car" placeholder="Carrera" class="w-full p-4 rounded-xl border border-gray-300">
-            <button onclick="save()" class="w-full bg-black text-white p-4 rounded-xl font-bold">Guardar y Regresar</button>
+            <input type="text" id="in-nom" placeholder="NOMBRE COMPLETO" class="w-full p-4 rounded-xl border border-gray-200 uppercase">
+            <input type="text" id="in-mat" placeholder="MATRÍCULA" class="w-full p-4 rounded-xl border border-gray-200">
+            <input type="text" id="in-car" placeholder="CARRERA" class="w-full p-4 rounded-xl border border-gray-200 uppercase">
+            <button onclick="save()" class="w-full bg-[#c20e1a] text-white p-4 rounded-xl font-bold">GUARDAR</button>
         </div>
     </div>
 
-    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-3 flex justify-around items-center z-50">
-        <button onclick="showPage('home')" id="nav-home" class="nav-btn active"><i class="fa-solid fa-house text-xl"></i><span class="mt-1">Inicio</span></button>
-        <button onclick="showPage('credencial')" id="nav-credencial" class="nav-btn"><i class="fa-solid fa-id-card text-xl"></i><span class="mt-1">Credencial</span></button>
-        <button class="nav-btn"><i class="fa-solid fa-circle-question text-xl"></i><span class="mt-1">CAE</span></button>
-        <button onclick="showPage('config')" class="nav-btn"><i class="fa-solid fa-bars text-xl"></i><span class="mt-1">Menú</span></button>
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-100 py-3 flex justify-around items-center z-50">
+        <button onclick="showPage('home')" id="nav-home" class="flex flex-col items-center text-red-600"><i class="fa-solid fa-house text-xl"></i><span class="text-[10px] mt-1">Inicio</span></button>
+        <button onclick="showPage('credencial')" id="nav-credencial" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-id-card text-xl"></i><span class="text-[10px] mt-1">Credencial</span></button>
+        <button class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-circle-question text-xl"></i><span class="text-[10px] mt-1">CAE</span></button>
+        <button onclick="showPage('config')" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-bars text-xl"></i><span class="text-[10px] mt-1">Menú</span></button>
     </nav>
 
     <script>
-        let userData = JSON.parse(localStorage.getItem('uvm_v3')) || {
+        let userData = JSON.parse(localStorage.getItem('uvm_v4')) || {
             n: "GARCIA FERNANDEZ ANTONIO JOSE",
             m: "100240218",
             c: "Lic En Medicina Veterin Y Zoo"
@@ -136,7 +135,7 @@
             document.getElementById('display-carrera-home').innerText = userData.c;
             document.getElementById('display-carrera-cred').innerText = userData.c;
             document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${userData.m}`;
-            document.getElementById('avatar-home').innerText = userData.n[0] + (userData.n.split(' ')[1] ? userData.n.split(' ')[1][0] : 'A');
+            document.getElementById('avatar-home').innerText = userData.n[0] + (userData.n.split(' ')[1] ? userData.n.split(' ')[1][0] : '');
             
             document.getElementById('in-nom').value = userData.n;
             document.getElementById('in-mat').value = userData.m;
@@ -147,9 +146,9 @@
             userData = {
                 n: document.getElementById('in-nom').value.toUpperCase(),
                 m: document.getElementById('in-mat').value,
-                c: document.getElementById('in-car').value
+                c: document.getElementById('in-car').value.toUpperCase()
             };
-            localStorage.setItem('uvm_v3', JSON.stringify(userData));
+            localStorage.setItem('uvm_v4', JSON.stringify(userData));
             update();
             showPage('home');
         }
@@ -157,9 +156,16 @@
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            const btn = document.getElementById('nav-' + id);
-            if(btn) btn.classList.add('active');
+            
+            // Actualizar colores de iconos
+            const navs = ['home', 'credencial'];
+            navs.forEach(n => {
+                const btn = document.getElementById('nav-' + n);
+                if(btn) {
+                    btn.classList.remove('text-red-600', 'text-gray-400');
+                    btn.classList.add(n === id ? 'text-red-600' : 'text-gray-400');
+                }
+            });
         }
 
         update();
