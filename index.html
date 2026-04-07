@@ -12,21 +12,21 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* Contenedores Home (Ajustados con borde plano y sin sombras) */
+        /* --- HOME: CONTENEDORES MÁS GRANDES Y PLANOS --- */
         .card-uvm-home { 
             background: white; 
             border: 1.5px solid #e5e7eb; 
-            border-radius: 1rem; 
-            padding: 1rem; 
-            margin-bottom: 0.8rem; 
-            box-shadow: none !important; 
+            border-radius: 1.1rem; 
+            padding: 1.25rem 1rem; /* Padding aumentado */
+            margin-bottom: 0.9rem; 
+            box-shadow: none !important;
         }
         .beca-container { 
             background-color: #f0f9ff; 
             border: 1.5px solid #bae6fd; 
-            border-radius: 1rem; 
-            padding: 1rem; 
-            margin-bottom: 1rem;
+            border-radius: 1.1rem; 
+            padding: 1.25rem 1rem; /* Padding aumentado */
+            margin-bottom: 1.2rem;
             box-shadow: none !important;
         }
         .agenda-container-home { 
@@ -37,16 +37,19 @@
             box-shadow: none !important;
         }
 
+        /* Tira de materias: Texto centrado verticalmente */
         .materia-item { 
             background-color: #fca5a5; 
             border-radius: 0.6rem; 
-            padding: 0.5rem 0.8rem; 
-            margin-bottom: 0.4rem; 
+            padding: 0.65rem 0.8rem; /* Ajuste para centrar */
+            margin-bottom: 0.5rem; 
             display: flex; 
-            flex-direction: column; 
+            flex-direction: column;
+            justify-content: center;
         }
-        .materia-titulo { font-weight: 800; font-size: 13.5px; color: #000; line-height: 1.1; }
-        .materia-detalle { font-size: 10.5px; color: #000; font-weight: 700; margin-top: 1px; opacity: 0.9; }
+        .materia-titulo { font-weight: 800; font-size: 13.5px; color: #000; line-height: 1.2; }
+        .materia-detalle { font-size: 10.5px; color: #000; font-weight: 700; margin-top: 2px; opacity: 0.9; }
+        
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
         
         /* --- CREDENCIAL (SIN CAMBIOS) --- */
@@ -59,11 +62,11 @@
 <body class="select-none">
 
     <div id="home" class="page active pb-24">
-        <header class="flex justify-between items-center px-5 py-4 bg-white sticky top-0 z-50">
+        <header class="flex justify-between items-center px-5 py-5 bg-white sticky top-0 z-50">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-6">
             <div class="flex items-center gap-4">
                 <i class="fa-regular fa-bell text-xl text-black"></i>
-                <div class="bg-[#c20e1a] text-white w-8 h-8 flex items-center justify-center rounded-full font-black text-[12px]">AG</div>
+                <div class="bg-[#c20e1a] text-white w-8 h-8 flex items-center justify-center rounded-full font-normal text-[12px]">AG</div>
             </div>
         </header>
         <main class="px-5 mt-2">
@@ -71,11 +74,11 @@
             
             <div class="card-uvm-home">
                 <h2 class="text-[16px] font-bold text-black mb-1">Lic En Medicina Veterin Y Zoo</h2>
-                <p class="text-[13px] text-gray-600 font-medium">Campus Lomas Verdes - Matrícula <span>100240218</span></p>
+                <p class="text-[13px] text-gray-500 font-medium">Campus Lomas Verdes - Matrícula <span class="text-gray-500">100240218</span></p>
             </div>
 
             <div class="beca-container">
-                <p class="text-[13px] text-black font-semibold leading-snug opacity-[0.97]">¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.</p>
+                <p class="text-[13px] text-black font-semibold leading-snug">¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.</p>
             </div>
 
             <div class="agenda-container-home">
@@ -84,46 +87,21 @@
                     <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
                 </div>
                 <p class="font-bold text-[14px] mb-3">Martes 07 de abril</p>
-                
                 <div id="agenda-list" class="space-y-1">
                     <div class="materia-item">
-                        <span class="materia-titulo">Ingles VI</span>
-                        <span class="materia-detalle">09:00H - 10:30H , SALÓN 10-F402</span>
+                        <span class="materia-titulo">Cirugía de Pequeñas Especies</span>
+                        <span class="materia-detalle">07:00H - 08:59H , SALÓN 10-VET1</span>
                     </div>
                     <div class="materia-item">
-                        <span class="materia-titulo">Nutrición animal</span>
-                        <span class="materia-detalle">10:30H - 12:00H , SALÓN 10-E103</span>
-                    </div>
-                    <div class="materia-item">
-                        <span class="materia-titulo">Farmacología veterinaria I</span>
-                        <span class="materia-detalle">12:00H - 13:30H , SALÓN 10-B302</span>
-                    </div>
-                    <div class="materia-item">
-                        <span class="materia-titulo">Cuerpo animal I</span>
-                        <span class="materia-detalle">13:30H - 15:00H , SALÓN 10-F405</span>
+                        <span class="materia-titulo">Patología Clínica</span>
+                        <span class="materia-detalle">09:00H - 10:59H , SALÓN 10-VET2</span>
                     </div>
                 </div>
             </div>
 
-            <div class="card-uvm-home mt-3">
-                <div class="flex justify-between items-center mb-3">
-                    <h2 class="text-[18px] font-bold">Avance académico</h2>
-                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-                </div>
-                <div class="flex justify-between text-center">
-                    <div class="flex-1">
-                        <p class="text-[17px] font-black">12.5%</p>
-                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p>
-                    </div>
-                    <div class="flex-1 border-x border-gray-100">
-                        <p class="text-[17px] font-black">9.40</p>
-                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p>
-                    </div>
-                    <div class="flex-1">
-                        <p class="text-[17px] font-black">6/48</p>
-                        <p class="text-[8px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p>
-                    </div>
-                </div>
+            <div class="flex justify-between items-center mt-6 mb-2 px-1">
+                <h2 class="text-[18px] font-bold">Avance académico</h2>
+                <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
             </div>
         </main>
     </div>
@@ -134,7 +112,7 @@
             <div class="flex flex-col items-center w-full">
                 <div class="cred-card">
                     <div class="cred-header-red">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-0 invert shadow-none">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-0 invert">
                     </div>
                     <div class="pt-8 pb-24 text-center px-4 relative z-0">
                         <p class="text-[#e32219] font-bold text-[13px] mb-1">Estudiante</p>
