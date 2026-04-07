@@ -12,13 +12,13 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* Contenedores más compactos y con bordes finos */
+        /* Contenedores más compactos */
         .card-uvm { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 0.75rem; margin-bottom: 0.6rem; }
         
         /* Agenda Estilo Original */
         .agenda-container { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 0.75rem; }
         .materia-item {
-            background-color: #fca5a5; /* Rojo Pastel Desaturado Sólido */
+            background-color: #fca5a5; 
             border-radius: 0.6rem;
             padding: 0.5rem 0.8rem;
             margin-bottom: 0.4rem;
@@ -29,9 +29,11 @@
         .materia-titulo { font-weight: 800; font-size: 13.5px; color: #000; line-height: 1.1; }
         .materia-detalle { font-size: 10.5px; color: #000; font-weight: 700; margin-top: 1px; opacity: 0.9; }
         
-        /* Iconos Nav ajustados */
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
-        .divider { border-right: 1px solid #f1f5f9; height: 100%; }
+        
+        /* Estilos específicos Credencial */
+        .cred-header { background-color: #ef5350; border-radius: 2.5rem 2.5rem 0 0; }
+        .cred-body { background-color: #fffcfc; border-radius: 0 0 2.5rem 2.5rem; border: 1px solid #fecaca; border-top: none; }
     </style>
 </head>
 <body class="select-none">
@@ -50,7 +52,7 @@
             
             <div class="card-uvm">
                 <h2 class="text-[15px] font-black text-black leading-tight" id="display-carrera-home">Lic En Medicina Veterin Y Zoo</h2>
-                <p class="text-[12px] text-gray-400 font-bold">Campus Lomas Verdes - <span class="text-black">100240218</span></p>
+                <p class="text-[12px] text-gray-400 font-bold">Campus Lomas Verdes - <span class="text-black" id="display-mat-home">100240218</span></p>
             </div>
 
             <div class="bg-[#e3f2fd] border border-blue-50 rounded-xl p-3 text-[12px] text-black font-bold mb-3 leading-tight">
@@ -111,41 +113,126 @@
         </main>
     </div>
 
+    <div id="credencial" class="page bg-white">
+        <div class="flex flex-col items-center pt-10 h-screen">
+            <div class="w-[90%] cred-header pt-8 pb-10 flex flex-col items-center relative">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-200">
+                <div class="absolute -bottom-10 w-24 h-24 bg-white rounded-full border-4 border-white overflow-hidden shadow-sm">
+                    <div class="w-full h-full bg-gray-50 flex items-center justify-center">
+                        <i class="fa-solid fa-user text-gray-200 text-5xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[90%] cred-body pt-16 pb-10 px-6 text-center shadow-md">
+                <p class="text-[#ef4444] font-black text-[11px] uppercase tracking-[0.2em] mb-2">Estudiante</p>
+                <h2 class="text-2xl font-black leading-tight text-gray-800 mb-2 uppercase" id="display-nombre-cred">GARCIA FERNANDEZ<br>ANTONIO JOSE</h2>
+                <p class="text-[13px] text-gray-500 font-bold leading-tight">Licenciatura - <span id="display-carrera-cred">Lic En Medicina Veterin Y Zoo</span><br>Campus LOMAS VERDES</p>
+                
+                <div class="mt-8 flex justify-center">
+                    <img id="qr-img" class="w-44 h-44 p-1 bg-white border border-gray-100 rounded-lg">
+                </div>
+
+                <p class="text-2xl font-black mt-4 tracking-[0.15em] text-gray-800" id="display-mat-cred">100240218</p>
+                
+                <p class="text-[14px] text-red-600 font-black mt-6 uppercase italic tracking-wider">NO VIGENTE</p>
+            </div>
+        </div>
+    </div>
+
     <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-2.5 flex justify-around items-center z-50">
-        <button class="flex flex-col items-center text-red-600">
+        <button onclick="showPage('home')" id="btn-home" class="flex flex-col items-center text-red-600">
             <i class="fa-solid fa-house text-lg"></i><span class="nav-text">Inicio</span>
         </button>
-        <button class="flex flex-col items-center text-gray-400">
+        <button onclick="showPage('credencial')" id="btn-credencial" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-id-card text-lg"></i><span class="nav-text">Credencial</span>
         </button>
         <button class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-circle-question text-lg"></i><span class="nav-text">CAE</span>
         </button>
-        <button onclick="showPage('config')" class="flex flex-col items-center text-gray-400">
+        <button onclick="showPage('config')" id="btn-config" class="flex flex-col items-center text-gray-400">
             <i class="fa-solid fa-bars text-lg"></i><span class="nav-text">Menú</span>
         </button>
     </nav>
 
     <div id="config" class="page bg-white p-6">
-        <h2 class="text-xl font-bold mb-4">Ajustes Rápidos</h2>
-        <input type="text" id="in-nom" placeholder="Tu Nombre" class="w-full p-4 border rounded-xl mb-3">
-        <button onclick="save()" class="w-full bg-black text-white p-4 rounded-xl font-bold">GUARDAR</button>
+        <div class="flex items-center gap-4 mb-8">
+            <i onclick="showPage('home')" class="fa-solid fa-arrow-left text-xl"></i>
+            <h2 class="text-xl font-bold uppercase">Configuración</h2>
+        </div>
+        <div class="space-y-4">
+            <input type="text" id="in-nom" placeholder="NOMBRE COMPLETO" class="w-full p-4 border rounded-xl uppercase font-bold text-sm">
+            <input type="text" id="in-mat" placeholder="MATRÍCULA" class="w-full p-4 border rounded-xl font-bold text-sm">
+            <input type="text" id="in-car" placeholder="CARRERA" class="w-full p-4 border rounded-xl uppercase font-bold text-sm">
+            <button onclick="save()" class="w-full bg-[#c20e1a] text-white p-4 rounded-xl font-black text-sm">GUARDAR CAMBIOS</button>
+        </div>
     </div>
 
     <script>
+        // Datos iniciales
+        let data = {
+            n: "GARCIA FERNANDEZ ANTONIO JOSE",
+            m: "100240218",
+            c: "Lic En Medicina Veterin Y Zoo"
+        };
+
+        function updateUI() {
+            // Home
+            document.getElementById('display-saludo').innerText = data.n;
+            document.getElementById('display-carrera-home').innerText = data.c;
+            document.getElementById('display-mat-home').innerText = data.m;
+            document.getElementById('avatar-home').innerText = data.n[0] + (data.n.split(' ')[1] ? data.n.split(' ')[1][0] : '');
+            
+            // Credencial
+            const nombreSplit = data.n.split(' ');
+            const formattedName = nombreSplit.slice(0, 2).join(' ') + '<br>' + nombreSplit.slice(2).join(' ');
+            document.getElementById('display-nombre-cred').innerHTML = formattedName;
+            document.getElementById('display-carrera-cred').innerText = data.c;
+            document.getElementById('display-mat-cred').innerText = data.m;
+            document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data.m}`;
+        }
+
         function save() {
-            const n = document.getElementById('in-nom').value;
-            if(n) {
-                document.getElementById('display-saludo').innerText = n;
-                document.getElementById('avatar-home').innerText = n[0] + (n.split(' ')[1] ? n.split(' ')[1][0] : 'A');
-            }
+            const n = document.getElementById('in-nom').value.toUpperCase();
+            const m = document.getElementById('in-mat').value;
+            const c = document.getElementById('in-car').value.toUpperCase();
+            
+            if(n) data.n = n;
+            if(m) data.m = m;
+            if(c) data.c = c;
+            
+            updateUI();
             showPage('home');
         }
 
         function showPage(id) {
+            // Ocultar todas las páginas
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Mostrar la seleccionada
             document.getElementById(id).classList.add('active');
+            
+            // Actualizar colores del Navbar
+            const navButtons = {
+                'home': 'btn-home',
+                'credencial': 'btn-credencial',
+                'config': 'btn-config'
+            };
+            
+            Object.values(navButtons).forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                if(btn) {
+                    btn.classList.replace('text-red-600', 'text-gray-400');
+                }
+            });
+
+            const activeBtn = document.getElementById(navButtons[id]);
+            if(activeBtn) {
+                activeBtn.classList.replace('text-gray-400', 'text-red-600');
+            }
         }
+
+        // Inicializar
+        updateUI();
     </script>
 </body>
 </html>
