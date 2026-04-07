@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>UVM Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root { --uvm-red: #c20e1a; }
+        body { font-family: -apple-system, system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+        .page { display: none; min-height: 100vh; background: #f8f9fa; }
+        .page.active { display: block; }
+        .loader { border-top-color: var(--uvm-red); animation: spinner 0.6s linear infinite; }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="splash" class="page active flex flex-col items-center justify-center bg-white">
+        <h1 class="text-6xl font-black text-[#c20e1a] tracking-tighter mb-20">UVM</h1>
+        <div class="loader w-8 h-8 border-4 border-gray-200 rounded-full"></div>
+    </div>
+
+    <div id="home" class="page pb-24">
+        <header class="flex justify-between items-center px-6 py-4 bg-white sticky top-0 z-40 shadow-sm">
+            <h1 class="text-3xl font-bold text-[#c20e1a] tracking-tighter">UVM</h1>
+            <div class="flex items-center gap-4">
+                <i class="fa-regular fa-bell text-2xl"></i>
+                <div onclick="showPage('perfil')" class="bg-[#c20e1a] text-white w-9 h-9 flex items-center justify-center rounded-full font-bold text-sm" id="avatar-circle">GA</div>
+            </div>
+        </header>
+
+        <main class="px-4 mt-2 space-y-4">
+            <p class="text-xl px-2">¡Hola, <span class="font-bold" id="display-nombre-saludo">Garcia Fernandez Antonio Jose!</span></p>
+            
+            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+                <h2 class="text-[17px] font-bold" id="display-carrera-home">Lic En Medicina Veterin Y Zoo</h2>
+                <p class="text-sm text-gray-500">Campus Lomas Verdes - Matrícula <span id="display-matricula-home">100240218</span></p>
+            </div>
+
+            <div class="bg-[#e1f5fe] rounded-2xl p-4 text-[14px] border border-blue-100">
+                ¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.
+            </div>
+
+            <section>
+                <div class="flex justify-between items-center mb-3 px-1">
+                    <h2 class="text-xl font-bold">Agenda</h2>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+                </div>
+                <p class="font-bold text-sm mb-3 px-1">Martes 07 de abril</p>
+                <div id="agenda-container" class="space-y-3">
+                    </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="credencial" class="page bg-[#ffebee]">
+        <div class="flex flex-col items-center pt-8 h-screen">
+            <div class="w-[90%] bg-[#c20e1a] rounded-t-3xl pt-10 pb-12 flex flex-col items-center relative">
+                <h1 class="text-5xl font-black text-white tracking-tighter">UVM</h1>
+                <div class="absolute -bottom-8 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full"></div>
+                </div>
+            </div>
+            <div class="w-[90%] bg-white rounded-b-3xl pt-14 pb-10 px-8 text-center shadow-xl">
+                <p class="text-red-600 font-bold text-xs uppercase mb-2">Estudiante</p>
+                <h2 class="text-2xl font-extrabold leading-tight mb-4" id="display-nombre-cred">Garcia Fernandez Antonio Jose</h2>
+                <p class="text-sm text-gray-700 leading-tight">Licenciatura - <span id="display-carrera-cred">Lic En Medicina Veterin Y Zoo</span><br>Campus LOMAS VERDES</p>
+                <p class="text-xl font-bold mt-4 tracking-[0.2em]" id="display-matricula-cred">100240218</p>
+                <div class="mt-8 flex justify-center">
+                    <img id="qr-image" src="" class="w-44 h-44">
+                </div>
+                <p class="text-[10px] text-gray-400 font-bold mt-6 uppercase">Vigencia: Vigente 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="perfil" class="page">
+        <header class="p-6 flex items-center gap-4 bg-white border-b">
+            <i onclick="showPage('home')" class="fa-solid fa-chevron-left text-xl"></i>
+            <h2 class="text-2xl font-bold">Configuración App</h2>
+        </header>
+        
+        <div class="p-6 space-y-6">
+            <div class="space-y-3">
+                <label class="text-xs font-bold text-gray-400 uppercase">Datos Personales</label>
+                <input type="text" id="input-nombre" placeholder="Nombre completo" class="w-full p-3 rounded-xl border border-gray-200">
+                <input type="text" id="input-matricula" placeholder="Matrícula" class="w-full p-3 rounded-xl border border-gray-200">
+                <input type="text" id="input-carrera" placeholder="Carrera" class="w-full p-3 rounded-xl border border-gray-200">
+            </div>
+
+            <div class="space-y-3 pt-4 border-t">
+                <label class="text-xs font-bold text-gray-400 uppercase">Clase de Hoy</label>
+                <input type="text" id="input-materia" placeholder="Nombre de la materia" class="w-full p-3 rounded-xl border border-gray-200">
+                <input type="text" id="input-horario" placeholder="Horario (ej: 07:00h - 09:59h)" class="w-full p-3 rounded-xl border border-gray-200">
+                <input type="text" id="input-salon" placeholder="Salón (ej: 10-VET1)" class="w-full p-3 rounded-xl border border-gray-200">
+            </div>
+
+            <button onclick="saveData()" class="w-full bg-[#c20e1a] text-white p-4 rounded-2xl font-bold shadow-lg active:scale-95 transition-transform">
+                Guardar Cambios
+            </button>
+            
+            <p class="text-center text-xs text-gray-400">Versión Experimento 2.1 - 2026</p>
+        </div>
+    </div>
+
+    <nav id="navbar" class="fixed bottom-0 w-full bg-white border-t border-gray-100 py-3 flex justify-around items-center z-50 hidden">
+        <button onclick="showPage('home')" id="btn-home" class="flex flex-col items-center text-red-600"><i class="fa-solid fa-house text-xl"></i><span class="text-[10px] mt-1">Inicio</span></button>
+        <button onclick="showPage('credencial')" id="btn-credencial" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-id-card text-xl"></i><span class="text-[10px] mt-1">Credencial</span></button>
+        <button class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-circle-question text-xl"></i><span class="text-[10px] mt-1">CAE</span></button>
+        <button onclick="showPage('perfil')" id="btn-perfil" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-bars text-xl"></i><span class="text-[10px] mt-1">Menú</span></button>
+    </nav>
+
+    <script>
+        // Datos iniciales por defecto
+        let userData = JSON.parse(localStorage.getItem('uvmData')) || {
+            nombre: "Garcia Fernandez Antonio Jose",
+            matricula: "100240218",
+            carrera: "Lic En Medicina Veterin Y Zoo",
+            materia: "Cirugía de Pequeñas Especies",
+            horario: "07:00h - 09:59h",
+            salon: "Salón 10-VET1"
+        };
+
+        function updateUI() {
+            // Actualizar textos en todas las pantallas
+            document.getElementById('display-nombre-saludo').innerText = userData.nombre;
+            document.getElementById('display-nombre-cred').innerText = userData.nombre;
+            document.getElementById('display-matricula-home').innerText = userData.matricula;
+            document.getElementById('display-matricula-cred').innerText = userData.matricula;
+            document.getElementById('display-carrera-home').innerText = userData.carrera;
+            document.getElementById('display-carrera-cred').innerText = userData.carrera;
+            
+            // Actualizar QR
+            document.getElementById('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${userData.matricula}`;
+            
+            // Actualizar Iniciales Avatar
+            const iniciales = userData.nombre.split(' ').map(n => n).join('').substring(0,2).toUpperCase();
+            document.getElementById('avatar-circle').innerText = iniciales;
+
+            // Actualizar Agenda
+            document.getElementById('agenda-container').innerHTML = `
+                <div class="bg-[#e57373] p-4 rounded-xl text-white shadow-sm">
+                    <p class="font-bold">${userData.materia}</p>
+                    <p class="text-sm opacity-90">${userData.horario} , ${userData.salon}</p>
+                </div>
+            `;
+
+            // Llenar inputs de configuración
+            document.getElementById('input-nombre').value = userData.nombre;
+            document.getElementById('input-matricula').value = userData.matricula;
+            document.getElementById('input-carrera').value = userData.carrera;
+            document.getElementById('input-materia').value = userData.materia;
+            document.getElementById('input-horario').value = userData.horario;
+            document.getElementById('input-salon').value = userData.salon;
+        }
+
+        function saveData() {
+            userData = {
+                nombre: document.getElementById('input-nombre').value,
+                matricula: document.getElementById('input-matricula').value,
+                carrera: document.getElementById('input-carrera').value,
+                materia: document.getElementById('input-materia').value,
+                horario: document.getElementById('input-horario').value,
+                salon: document.getElementById('input-salon').value
+            };
+            localStorage.setItem('uvmData', JSON.stringify(userData));
+            updateUI();
+            showPage('home');
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // Cambiar colores de la barra inferior
+            const btns = ['btn-home', 'btn-credencial', 'btn-perfil'];
+            btns.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.remove('text-red-600');
+                    el.classList.add('text-gray-400');
+                }
+            });
+            
+            const activeBtn = document.getElementById('btn-' + pageId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-400');
+                activeBtn.classList.add('text-red-600');
+            }
+        }
+
+        // Inicio
+        setTimeout(() => {
+            document.getElementById('splash').classList.remove('active');
+            document.getElementById('home').classList.add('active');
+            document.getElementById('navbar').classList.remove('hidden');
+            updateUI();
+        }, 1500);
+    </script>
+</body>
+</html>
