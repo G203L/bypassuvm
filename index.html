@@ -12,12 +12,10 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* --- HOME: CONTENEDORES CON BORDES 3% MÁS OSCUROS --- */
         .card-uvm-home { 
             background: white; border: 1.5px solid #d1d5db; border-radius: 1.1rem; 
             padding: 1.25rem 1rem; margin-bottom: 0.9rem; box-shadow: none !important;
         }
-        /* Beca: Fuente +5% y ajuste de estructura */
         .beca-container { 
             background-color: #e0f2ff; border: 1.5px solid #7dd3fc; border-radius: 1.1rem; 
             padding: 1.3rem 1.1rem; margin-bottom: 1.2rem; box-shadow: none !important;
@@ -26,17 +24,18 @@
             background: white; border: 1.5px solid #d1d5db; border-radius: 1rem; 
             padding: 1rem; box-shadow: none !important;
         }
+        /* Altura aumentada en materia-item */
         .materia-item { 
             background-color: #fca5a5; border-radius: 0.6rem; 
-            padding: 0.4rem 0.8rem; margin-bottom: 0.4rem; 
+            padding: 0.6rem 0.8rem; margin-bottom: 0.4rem; 
             display: flex; flex-direction: column; justify-content: center;
             line-height: 1.1; 
         }
         .materia-text { font-weight: 800; font-size: 12px; color: #000; display: block; }
         
-        /* --- CREDENCIAL: AJUSTES DE ESPACIADO COMPACTO --- */
+        /* Credencial: Fondo rosa con +2% saturación */
         .cred-card {
-            width: 90%; max-width: 380px; background-color: #fff1f2; 
+            width: 90%; max-width: 380px; background-color: #ffe4e6; 
             border-radius: 1.5rem; overflow: hidden; margin-top: 20px;
         }
         .cred-header-red { 
@@ -87,20 +86,20 @@
                 
                 <div id="agenda-list" class="space-y-1">
                     <div class="materia-item">
-                        <span class="materia-text">Cirugía de Pequeñas Especies</span>
-                        <span class="materia-text opacity-90 mt-0.5">07:00H - 08:59H , SALÓN 10-VET1</span>
+                        <span class="materia-text">Ingles VI</span>
+                        <span class="materia-text opacity-90 mt-0.5">09:00H - 10:30H , SALÓN 10-F-405</span>
                     </div>
                     <div class="materia-item">
-                        <span class="materia-text">Patología Clínica</span>
-                        <span class="materia-text opacity-90 mt-0.5">09:00H - 10:59H , SALÓN 10-VET2</span>
+                        <span class="materia-text">Cuerpo animal I</span>
+                        <span class="materia-text opacity-90 mt-0.5">10:30H - 12:00H , SALÓN 10-F-405</span>
                     </div>
                     <div class="materia-item">
-                        <span class="materia-text">Nutrición Animal Especializada</span>
-                        <span class="materia-text opacity-90 mt-0.5">11:00H - 12:59H , SALÓN 10-VET3</span>
+                        <span class="materia-text">Nutricion animal</span>
+                        <span class="materia-text opacity-90 mt-0.5">13:00H - 15:00H , SALÓN 10-F-405</span>
                     </div>
                     <div class="materia-item">
-                        <span class="materia-text">Ética Médica</span>
-                        <span class="materia-text opacity-90 mt-0.5">13:00H - 14:59H , SALÓN 10-VET4</span>
+                        <span class="materia-text">Medicina de Aves</span>
+                        <span class="materia-text opacity-90 mt-0.5">15:30H - 17:30H , SALÓN 10-F-405</span>
                     </div>
                 </div>
             </div>
@@ -130,20 +129,20 @@
 
                     <div class="pt-8 pb-24 text-center px-4 relative z-0">
                         <p class="text-[#e32219] font-bold text-[13px] mb-1">Estudiante</p>
-                        <h2 class="text-[20px] font-black leading-tight text-gray-800 mb-1 uppercase max-w-[280px] mx-auto">
+                        <h2 class="text-[21px] font-black leading-tight text-gray-800 mb-1 uppercase max-w-[300px] mx-auto">
                             GARCIA FERNANDEZ ANTONIO JOSE
                         </h2>
                         <div class="max-w-[210px] mx-auto mt-1">
                             <p class="text-[13.5px] text-gray-600 font-bold leading-tight">
                                 Licenciatura - Lic en Medicina Veterin y Zoo
                             </p>
-                            <p class="text-[13.5px] text-gray-600 font-bold mt-0.5 opacity-95">
+                            <p class="text-[13.5px] text-gray-600 font-bold -mt-0.5 opacity-95">
                                 Campus LOMAS VERDES
                             </p>
                         </div>
                         
                         <div class="qr-container">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=100240218" class="w-36 h-36">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=100240218" class="w-[148px] h-[148px]">
                         </div>
 
                         <div class="flex flex-col items-center -space-y-1 mt-0"> 
