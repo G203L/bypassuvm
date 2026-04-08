@@ -12,192 +12,246 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        .card-uvm-home { 
-            background: white; border: 1.5px solid #d1d5db; border-radius: 1.1rem; 
-            padding: 1.25rem 1rem; margin-bottom: 0.9rem;
-        }
-        .beca-container { 
-            background-color: #e0f2ff; border: 1.5px solid #7dd3fc; border-radius: 1.1rem; 
-            padding: 1.3rem 1.1rem; margin-bottom: 1.2rem;
-        }
-        .agenda-container-home { 
-            background: white; border: 1.5px solid #d1d5db; border-radius: 1rem; 
-            padding: 1rem;
-        }
-        .materia-item { 
-            background-color: #fca5a5; border-radius: 0.6rem; 
-            padding: 0.6rem 0.8rem; margin-bottom: 0.4rem; 
-            display: flex; flex-direction: column; justify-content: center;
-            line-height: 1.1; 
-        }
-        .materia-text { font-weight: 800; font-size: 12px; color: #000; display: block; }
-        
-        .cred-card {
-            width: 90%; max-width: 380px; background-color: #ffe4e6; 
-            border-radius: 1.5rem; overflow: hidden; margin-top: 20px;
-        }
-        .cred-header-red { 
-            background-color: #d62d25; padding: 1.5rem 1.5rem 3rem 1.5rem; 
-            display: flex; justify-content: center; position: relative;
-        }
-        .cred-header-red::after {
-            content: ''; position: absolute; bottom: -25px; left: 50%;
-            transform: translateX(-50%); width: 80px; height: 50px;
-            background-color: #d62d25; border-radius: 0 0 100px 100px; z-index: 1;
-        }
-        .qr-container { background: white; padding: 10px; display: inline-block; border-radius: 0.5rem; margin: 15px 0; }
-        .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
+        /* Estilos Home */
+        .card-uvm-home, .beca-container, .agenda-container-home { border-radius: 1.1rem; padding: 1.25rem 1rem; margin-bottom: 0.9rem; border: 1.5px solid #d1d5db; background: white; }
+        .beca-container { background-color: #e0f2ff; border-color: #7dd3fc; }
+        .materia-item { background-color: #fca5a5; border-radius: 0.6rem; padding: 0.6rem 0.8rem; margin-bottom: 0.4rem; line-height: 1.1; display: flex; flex-direction: column; }
+        .materia-text { font-weight: 800; font-size: 12px; color: #000; }
 
+        /* Loader */
+        #loader { display: none; position: fixed; inset: 0; background: white; z-index: 100; align-items: center; justify-content: center; }
+        .spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #c20e1a; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Agenda Detalle */
+        .time-grid { position: relative; height: 1200px; border-left: 1px solid #e5e7eb; margin-left: 3rem; }
+        .hour-mark { position: absolute; left: -3rem; width: 2.5rem; text-align: right; font-size: 10px; color: #9ca3af; transform: translateY(-50%); }
+        .time-line { border-top: 1px solid #e5e7eb; width: 100%; position: absolute; }
+        .current-time-line { position: absolute; width: 100%; border-top: 2px solid #ef4444; z-index: 10; }
+        .current-time-line::before { content: ''; position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; }
+        .event-card { position: absolute; left: 5px; right: 10px; background: #fca5a5; border-radius: 4px; padding: 8px; overflow: hidden; }
+
+        /* Credencial */
+        .cred-card { width: 90%; max-width: 380px; background-color: #ffe4e6; border-radius: 1.5rem; overflow: hidden; margin: 20px auto; }
+        .cred-header-red { background-color: #d62d25; padding: 1.5rem 1.5rem 3rem 1.5rem; position: relative; display: flex; justify-content: center; }
+        .cred-header-red::after { content: ''; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); width: 80px; height: 50px; background-color: #d62d25; border-radius: 0 0 100px 100px; }
+        
         input { border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.5rem; width: 100%; margin-bottom: 1rem; }
     </style>
 </head>
 <body class="select-none">
 
+    <div id="loader"><div class="spinner"></div></div>
+
     <div id="home" class="page active pb-24">
         <header class="flex justify-between items-center px-5 py-5 bg-white sticky top-0 z-50">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-7">
-            <div class="flex items-center gap-4">
-                <i class="fa-regular fa-bell text-xl text-black"></i>
-                <div id="user-initials" class="bg-[#c20e1a] text-white w-8 h-8 flex items-center justify-center rounded-full font-normal text-[12px]">AG</div>
-            </div>
+            <div id="user-initials" class="bg-[#c20e1a] text-white w-8 h-8 flex items-center justify-center rounded-full text-[12px]">AG</div>
         </header>
 
         <main class="px-5 mt-2">
             <p class="text-[19px] mb-4">¡Hola, <span id="display-name-home" class="font-bold">Garcia Fernandez Antonio Jose!</span></p>
-            
             <div class="card-uvm-home">
-                <h2 id="display-career-home" class="text-[16px] font-bold text-black mb-1">Lic En Medicina Veterin Y Zoo</h2>
-                <p class="text-[13px] text-gray-500 font-normal opacity-100">Campus Lomas Verdes - Matrícula <span id="display-id-home">100240218</span></p>
+                <h2 id="display-career-home" class="text-[16px] font-bold mb-1">Lic En Medicina Veterin Y Zoo</h2>
+                <p class="text-[13px] text-gray-500">Campus Lomas Verdes - Matrícula <span id="display-id-home">100240218</span></p>
             </div>
-
-            <div class="beca-container">
-                <p class="text-[13.7px] text-black font-semibold leading-snug">¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.</p>
-            </div>
-
-            <div class="agenda-container-home">
+            
+            <div class="agenda-container-home" onclick="openAgenda()">
                 <div class="flex justify-between items-baseline">
                     <h2 class="text-[18px] font-bold">Agenda</h2>
                     <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
                 </div>
-                <p id="current-date" class="font-bold text-[14px] -mt-1 mb-3 text-capitalize">Cargando fecha...</p>
-                
-                <div class="space-y-1">
-                    <div class="materia-item"><span id="m1-name" class="materia-text">Ingles VI</span><span class="materia-text opacity-90 mt-0.5">09:00H - 10:30H , SALÓN 10-F-405</span></div>
-                    <div class="materia-item"><span id="m2-name" class="materia-text">Cuerpo animal I</span><span class="materia-text opacity-90 mt-0.5">10:30H - 12:00H , SALÓN 10-F-405</span></div>
-                    <div class="materia-item"><span id="m3-name" class="materia-text">Nutricion animal</span><span class="materia-text opacity-90 mt-0.5">13:00H - 15:00H , SALÓN 10-F-405</span></div>
-                    <div class="materia-item"><span id="m4-name" class="materia-text">Medicina de Aves</span><span class="materia-text opacity-90 mt-0.5">15:30H - 17:30H , SALÓN 10-F-405</span></div>
-                </div>
+                <p id="current-date" class="font-bold text-[14px] mb-3"></p>
+                <div id="home-agenda-list" class="space-y-1"></div>
             </div>
 
             <div class="card-uvm-home mt-4">
-                <div class="flex justify-between items-center mb-3"><h2 class="text-[17px] font-bold">Avance académico</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
+                <div class="flex justify-between mb-3"><h2 class="text-[17px] font-bold">Avance académico</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
                 <div class="flex justify-between text-center">
-                    <div class="flex-1"><p class="text-[17px] font-bold">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p></div>
-                    <div class="flex-1 border-x border-gray-300"><p class="text-[17px] font-bold">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
-                    <div class="flex-1"><p class="text-[17px] font-bold">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
+                    <div class="flex-1"><p class="text-[17px] font-bold">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase">Avance</p></div>
+                    <div class="flex-1 border-x border-gray-300"><p class="text-[17px] font-bold">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase">Promedio</p></div>
+                    <div class="flex-1"><p class="text-[17px] font-bold">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase">Materias</p></div>
                 </div>
             </div>
-            </main>
+        </main>
+    </div>
+
+    <div id="agenda-detail" class="page bg-white pb-10">
+        <header class="flex items-center p-4 sticky top-0 bg-white z-50">
+            <i class="fa-solid fa-arrow-left text-xl mr-4" onclick="showPage('home')"></i>
+            <h1 class="text-xl font-bold">Agenda</h1>
+        </header>
+        <div class="px-4">
+            <div class="flex gap-2 mb-6">
+                <button class="flex-1 py-1 rounded-lg border-2 border-black font-bold bg-white">Día</button>
+                <button class="flex-1 py-1 rounded-lg border border-gray-300 text-gray-400">Mes</button>
+                <button class="flex-1 py-1 rounded-lg border border-gray-300 text-gray-400">Año</button>
+            </div>
+            <p id="agenda-full-date" class="text-center font-bold text-lg mb-4"></p>
+            
+            <div class="overflow-y-auto pt-4" style="height: calc(100vh - 200px);">
+                <div class="time-grid" id="grid-container">
+                    <div id="current-time-line" class="current-time-line"></div>
+                    </div>
+            </div>
+        </div>
     </div>
 
     <div id="credencial" class="page bg-white">
-        <div class="flex flex-col items-start pt-4 h-screen">
-            <div onclick="showPage('home')" class="pl-4 cursor-pointer z-50"><i class="fa-solid fa-arrow-left text-xl text-gray-700"></i></div>
-            <div class="flex flex-col items-center w-full">
-                <div class="cred-card">
-                    <div class="cred-header-red">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-0 invert">
-                    </div>
-                    <div class="pt-8 pb-24 text-center px-4 relative z-0">
-                        <p class="text-[#e32219] font-bold text-[13px] mb-1">Estudiante</p>
-                        <h2 id="display-name-cred" class="text-[21px] font-black leading-tight text-gray-800 mb-1 uppercase max-w-[300px] mx-auto">GARCIA FERNANDEZ ANTONIO JOSE</h2>
-                        <div class="max-w-[210px] mx-auto mt-1">
-                            <p id="display-career-cred" class="text-[13.5px] text-gray-600 font-bold leading-tight">Licenciatura - Lic en Medicina Veterin y Zoo</p>
-                            <p class="text-[13.5px] text-gray-600 font-bold -mt-0.5 opacity-95">Campus LOMAS VERDES</p>
-                        </div>
-                        <div class="qr-container"><img id="display-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=100240218" class="w-[148px] h-[148px]"></div>
-                        <div class="flex flex-col items-center -space-y-1 mt-0"> 
-                            <p id="display-id-cred" class="text-[18px] font-semibold text-gray-800">100240218</p>
-                            <p class="text-[10px] text-gray-400 font-normal -mt-3 uppercase tracking-tight">VIGENCIA: NO VIGENTE</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="p-4" onclick="showPage('home')"><i class="fa-solid fa-arrow-left text-xl"></i></div>
+        <div class="cred-card">
+            <div class="cred-header-red"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-0 invert"></div>
+            <div class="pt-8 pb-24 text-center px-4">
+                <p class="text-red-600 font-bold text-sm mb-1">Estudiante</p>
+                <h2 id="display-name-cred" class="text-[21px] font-black uppercase mb-1"></h2>
+                <p id="display-career-cred" class="text-sm font-bold text-gray-600"></p>
+                <div class="qr-container my-4"><img id="display-qr" class="w-36 h-36 mx-auto"></div>
+                <p id="display-id-cred" class="text-lg font-bold"></p>
+                <p class="text-[10px] text-gray-400 uppercase">Vigencia: No Vigente</p>
             </div>
         </div>
     </div>
 
     <div id="menu" class="page bg-white p-6">
-        <h2 class="text-2xl font-bold mb-6">Configuración de Datos</h2>
-        <label class="text-sm font-bold text-gray-600">Nombre Completo</label>
-        <input type="text" id="input-name" value="Garcia Fernandez Antonio Jose">
-        
-        <label class="text-sm font-bold text-gray-600">Matrícula</label>
-        <input type="text" id="input-id" value="100240218">
-        
-        <label class="text-sm font-bold text-gray-600">Carrera</label>
-        <input type="text" id="input-career" value="Lic En Medicina Veterin Y Zoo">
-
-        <h3 class="font-bold mt-4 mb-2">Materias</h3>
-        <input type="text" id="input-m1" value="Ingles VI">
-        <input type="text" id="input-m2" value="Cuerpo animal I">
-        <input type="text" id="input-m3" value="Nutricion animal">
-        <input type="text" id="input-m4" value="Medicina de Aves">
-
-        <button onclick="saveData()" class="w-full bg-red-600 text-white font-bold py-3 rounded-lg mt-4">Guardar Cambios</button>
+        <h2 class="text-2xl font-bold mb-6">Configuración</h2>
+        <input type="text" id="input-name" placeholder="Nombre">
+        <input type="text" id="input-id" placeholder="Matrícula">
+        <input type="text" id="input-career" placeholder="Carrera">
+        <h3 class="font-bold mb-2">Materias y Horarios (HH:MM)</h3>
+        <div id="input-materias-container" class="space-y-2"></div>
+        <button onclick="saveData()" class="w-full bg-red-600 text-white font-bold py-3 rounded-lg mt-6">Guardar</button>
     </div>
 
-    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-3 flex justify-around items-center z-50">
-        <button onclick="showPage('home')" id="btn-home" class="flex flex-col items-center text-red-600">
-            <i class="fa-solid fa-house text-lg"></i><span class="nav-text">Inicio</span>
-        </button>
-        <button onclick="showPage('credencial')" id="btn-credencial" class="flex flex-col items-center text-gray-400">
-            <i class="fa-solid fa-id-card text-lg"></i><span class="nav-text">Credencial</span>
-        </button>
-        <button class="flex flex-col items-center text-gray-400">
-            <i class="fa-solid fa-circle-question text-lg"></i><span class="nav-text">CAE</span>
-        </button>
-        <button onclick="showPage('menu')" id="btn-menu" class="flex flex-col items-center text-gray-400">
-            <i class="fa-solid fa-bars text-lg"></i><span class="nav-text">Menú</span>
-        </button>
+    <nav class="fixed bottom-0 w-full bg-white border-t py-3 flex justify-around z-50">
+        <button onclick="showPage('home')" id="btn-home" class="flex flex-col items-center text-red-600"><i class="fa-solid fa-house"></i><span class="nav-text">Inicio</span></button>
+        <button onclick="showPage('credencial')" id="btn-credencial" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-id-card"></i><span class="nav-text">Credencial</span></button>
+        <button class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-circle-question"></i><span class="nav-text">CAE</span></button>
+        <button onclick="showPage('menu')" id="btn-menu" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-bars"></i><span class="nav-text">Menú</span></button>
     </nav>
 
     <script>
-        function updateDate() {
-            const options = { weekday: 'long', day: '2-digit', month: 'long' };
-            let today = new Date().toLocaleDateString('es-ES', options);
-            today = today.charAt(0).toUpperCase() + today.slice(1);
-            document.getElementById('current-date').innerText = today;
+        let userData = {
+            name: "Garcia Fernandez Antonio Jose",
+            id: "100240218",
+            career: "Lic En Medicina Veterin Y Zoo",
+            subjects: [
+                { name: "Ingles VI", start: "09:00", end: "10:30" },
+                { name: "Cuerpo animal I", start: "10:30", end: "12:00" },
+                { name: "Nutricion animal", start: "13:00", end: "15:00" },
+                { name: "Medicina de Aves", start: "15:30", end: "17:30" }
+            ]
+        };
+
+        function init() {
+            // Cargar inputs de materias
+            const container = document.getElementById('input-materias-container');
+            userData.subjects.forEach((s, i) => {
+                container.innerHTML += `<div class="flex gap-2"><input type="text" id="m-n-${i}" value="${s.name}" class="flex-2"><input type="text" id="m-s-${i}" value="${s.start}" class="w-20"><input type="text" id="m-e-${i}" value="${s.end}" class="w-20"></div>`;
+            });
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('display-name-home').innerText = userData.name;
+            document.getElementById('display-id-home').innerText = userData.id;
+            document.getElementById('display-career-home').innerText = userData.career;
+            document.getElementById('display-name-cred').innerText = userData.name.toUpperCase();
+            document.getElementById('display-career-cred').innerText = "Licenciatura - " + userData.career;
+            document.getElementById('display-id-cred').innerText = userData.id;
+            document.getElementById('display-qr').src = `https://api.qrserver.com/v1/create-qr-code/?data=${userData.id}`;
+            
+            const initials = userData.name.split(' ');
+            document.getElementById('user-initials').innerText = (initials + initials[initials.length-1]).toUpperCase();
+
+            // Render Agenda Home
+            const homeList = document.getElementById('home-agenda-list');
+            homeList.innerHTML = userData.subjects.map(s => `
+                <div class="materia-item">
+                    <span class="materia-text">${s.name}</span>
+                    <span class="materia-text opacity-90 mt-0.5">${s.start}H - ${s.end}H , SALÓN 10-F-405</span>
+                </div>
+            `).join('');
+
+            updateDates();
+            renderTimeGrid();
+        }
+
+        function updateDates() {
+            const now = new Date();
+            const optionsShort = { weekday: 'long', day: '2-digit', month: 'long' };
+            const optionsFull = { day: '2-digit', month: 'long', year: 'numeric' };
+            document.getElementById('current-date').innerText = now.toLocaleDateString('es-ES', optionsShort).replace(/^\w/, c => c.toUpperCase());
+            document.getElementById('agenda-full-date').innerText = now.toLocaleDateString('es-ES', optionsFull).replace(' de ', ' de abril del '); // Ajuste manual para el estilo del video
+        }
+
+        function renderTimeGrid() {
+            const container = document.getElementById('grid-container');
+            container.querySelectorAll('.hour-mark, .time-line, .event-card').forEach(e => e.remove());
+            
+            for(let i=7; i<=22; i++) {
+                const top = (i - 7) * 60;
+                container.innerHTML += `<div class="hour-mark" style="top: ${top}px">${i}:00</div>`;
+                container.innerHTML += `<div class="time-line" style="top: ${top}px"></div>`;
+            }
+
+            userData.subjects.forEach(s => {
+                const startParts = s.start.split(':');
+                const endParts = s.end.split(':');
+                const startMins = (parseInt(startParts) - 7) * 60 + parseInt(startParts);
+                const endMins = (parseInt(endParts) - 7) * 60 + parseInt(endParts);
+                const height = endMins - startMins;
+
+                container.innerHTML += `
+                    <div class="event-card" style="top: ${startMins}px; height: ${height}px">
+                        <p class="font-bold text-[11px] leading-tight">${s.name}</p>
+                        <p class="text-[10px] opacity-80">${s.start}h - ${s.end}h , Salón 10-F-405</p>
+                    </div>
+                `;
+            });
+            updateCurrentTimeLine();
+        }
+
+        function updateCurrentTimeLine() {
+            const now = new Date();
+            const line = document.getElementById('current-time-line');
+            if (now.getHours() >= 7 && now.getHours() <= 22) {
+                const mins = (now.getHours() - 7) * 60 + now.getMinutes();
+                line.style.top = mins + 'px';
+                line.style.display = 'block';
+            } else { line.style.display = 'none'; }
+        }
+
+        function openAgenda() {
+            document.getElementById('loader').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                showPage('agenda-detail');
+            }, 800);
         }
 
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            const navButtons = { 'home': 'btn-home', 'credencial': 'btn-credencial', 'menu': 'btn-menu' };
-            document.querySelectorAll('nav button').forEach(btn => btn.classList.replace('text-red-600', 'text-gray-400'));
-            const activeBtn = document.getElementById(navButtons[id]);
-            if(activeBtn) activeBtn.classList.replace('text-gray-400', 'text-red-600');
+            const btns = { home: 'btn-home', credencial: 'btn-credencial', menu: 'btn-menu' };
+            document.querySelectorAll('nav button').forEach(b => b.classList.replace('text-red-600', 'text-gray-400'));
+            if(btns[id]) document.getElementById(btns[id]).classList.replace('text-gray-400', 'text-red-600');
         }
 
         function saveData() {
-            const name = document.getElementById('input-name').value;
-            const id = document.getElementById('input-id').value;
-            const career = document.getElementById('input-career').value;
-            document.getElementById('display-name-home').innerText = name;
-            document.getElementById('display-id-home').innerText = id;
-            document.getElementById('display-career-home').innerText = career;
-            document.getElementById('display-name-cred').innerText = name.toUpperCase();
-            document.getElementById('display-id-cred').innerText = id;
-            document.getElementById('display-career-cred').innerText = "Licenciatura - " + career;
-            document.getElementById('display-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${id}`;
-            const parts = name.split(' ');
-            if(parts.length >= 2) document.getElementById('user-initials').innerText = (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
-            document.getElementById('m1-name').innerText = document.getElementById('input-m1').value;
-            document.getElementById('m2-name').innerText = document.getElementById('input-m2').value;
-            document.getElementById('m3-name').innerText = document.getElementById('input-m3').value;
-            document.getElementById('m4-name').innerText = document.getElementById('input-m4').value;
+            userData.name = document.getElementById('input-name').value;
+            userData.id = document.getElementById('input-id').value;
+            userData.career = document.getElementById('input-career').value;
+            userData.subjects = userData.subjects.map((_, i) => ({
+                name: document.getElementById(`m-n-${i}`).value,
+                start: document.getElementById(`m-s-${i}`).value,
+                end: document.getElementById(`m-e-${i}`).value
+            }));
+            updateUI();
             showPage('home');
         }
-        updateDate();
+
+        init();
+        setInterval(updateCurrentTimeLine, 60000);
     </script>
 </body>
 </html>
