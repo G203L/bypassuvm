@@ -12,21 +12,21 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* --- ESTILOS ORIGINALES PRESERVADOS --- */
+        /* --- HOME: NO TOCAR (PERFECTO) --- */
         .card-uvm-home { background: white; border: 1.5px solid #d1d5db; border-radius: 1.1rem; padding: 1.25rem 1rem; margin-bottom: 0.9rem; }
         .beca-container { background-color: #e0f2ff; border: 1.5px solid #7dd3fc; border-radius: 1.1rem; padding: 1.3rem 1.1rem; margin-bottom: 1.2rem; }
         .agenda-container-home { background: white; border: 1.5px solid #d1d5db; border-radius: 1rem; padding: 1rem; cursor: pointer; }
         .materia-item { background-color: #fca5a5; border-radius: 0.6rem; padding: 0.6rem 0.8rem; margin-bottom: 0.4rem; display: flex; flex-direction: column; line-height: 1.1; }
         .materia-text { font-weight: 800; font-size: 12px; color: #000; }
         
-        /* --- CREDENCIAL --- */
+        /* --- CREDENCIAL: ARREGLADO CAMPUS --- */
         .cred-card { width: 90%; max-width: 380px; background-color: #ffe4e6; border-radius: 1.5rem; overflow: hidden; margin: 20px auto; }
         .cred-header-red { background-color: #d62d25; padding: 1.5rem 1.5rem 3rem 1.5rem; display: flex; justify-content: center; position: relative; }
         .cred-header-red::after { content: ''; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); width: 80px; height: 50px; background-color: #d62d25; border-radius: 0 0 100px 100px; z-index: 1; }
         .qr-container { background: white; padding: 10px; display: inline-block; border-radius: 0.5rem; margin: 15px 0; }
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
 
-        /* --- NUEVO: LOADER Y AGENDA DETALLE --- */
+        /* --- AGENDA: ALINEACIÓN MILIMÉTRICA --- */
         #loader { display: none; position: fixed; inset: 0; background: white; z-index: 1000; align-items: center; justify-content: center; }
         .spinner { width: 45px; height: 45px; border: 4px solid #f3f3f3; border-top: 4px solid #c20e1a; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -34,12 +34,13 @@
         .time-grid { position: relative; height: 1000px; border-left: 1px solid #eee; margin-left: 3.5rem; margin-right: 1rem; }
         .hour-label { position: absolute; left: -3.5rem; width: 3rem; text-align: right; font-size: 11px; color: #999; transform: translateY(-50%); }
         .hour-line { position: absolute; width: 100%; border-top: 1px solid #eee; z-index: 0; }
+        
         .current-time-indicator { position: absolute; width: 100%; border-top: 2px solid #ff0000; z-index: 20; }
         .current-time-indicator::before { content: ''; position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; background: #ff0000; border-radius: 50%; }
 
-        .agenda-block { position: absolute; left: 4px; right: 0; background: #fca5a5; border-radius: 4px; padding: 10px; border-left: 4px solid #fca5a5; display: flex; flex-direction: column; justify-content: start; }
-        .agenda-block-title { font-weight: 800; font-size: 13px; color: #000; margin-bottom: 2px; }
-        .agenda-block-info { font-size: 11px; font-weight: 500; color: #333; }
+        .agenda-block { position: absolute; left: 4px; right: 0; background: #fca5a5; border-radius: 4px; padding: 8px; display: flex; flex-direction: column; justify-content: start; z-index: 10; }
+        .agenda-block-title { font-weight: 800; font-size: 12px; color: #000; line-height: 1.2; margin-bottom: 1px; }
+        .agenda-block-info { font-size: 10px; font-weight: 500; color: #333; line-height: 1; }
 
         input { border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.5rem; width: 100%; margin-bottom: 1rem; }
     </style>
@@ -59,27 +60,16 @@
 
         <main class="px-5 mt-2">
             <p class="text-[19px] mb-4">¡Hola, <span id="display-name-home" class="font-bold">Garcia Fernandez Antonio Jose!</span></p>
-            
             <div class="card-uvm-home">
                 <h2 id="display-career-home" class="text-[16px] font-bold text-black mb-1">Lic En Medicina Veterin Y Zoo</h2>
                 <p class="text-[13px] text-gray-500 font-normal opacity-100">Campus Lomas Verdes - Matrícula <span id="display-id-home">100240218</span></p>
             </div>
-
-            <div class="beca-container">
-                <p class="text-[13.7px] text-black font-semibold leading-snug">¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.</p>
-            </div>
-
+            <div class="beca-container"><p class="text-[13.7px] text-black font-semibold leading-snug">¡No lo olvides! Si cuentas con beca, cumple cada etapa del proceso para renovarla a tiempo.</p></div>
             <div class="agenda-container-home" onclick="triggerAgendaLoad()">
-                <div class="flex justify-between items-baseline">
-                    <h2 class="text-[18px] font-bold">Agenda</h2>
-                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
-                </div>
+                <div class="flex justify-between items-baseline"><h2 class="text-[18px] font-bold">Agenda</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
                 <p id="current-date" class="font-bold text-[14px] -mt-1 mb-3 text-capitalize"></p>
-                
-                <div id="home-subjects-list" class="space-y-1">
-                    </div>
+                <div id="home-subjects-list" class="space-y-1"></div>
             </div>
-
             <div class="card-uvm-home mt-4">
                 <div class="flex justify-between items-center mb-3"><h2 class="text-[17px] font-bold">Avance académico</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
                 <div class="flex justify-between text-center">
@@ -88,7 +78,7 @@
                     <div class="flex-1"><p class="text-[17px] font-bold">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
                 </div>
             </div>
-            </main>
+        </main>
     </div>
 
     <div id="agenda-detail" class="page bg-white">
@@ -96,7 +86,6 @@
             <i class="fa-solid fa-arrow-left text-xl mr-5" onclick="showPage('home')"></i>
             <h1 class="text-[20px] font-bold">Agenda</h1>
         </header>
-        
         <div class="px-5">
             <div class="flex gap-2 mb-6">
                 <button class="flex-1 py-1.5 rounded-lg border-2 border-black font-bold text-[14px]">Día</button>
@@ -104,11 +93,10 @@
                 <button class="flex-1 py-1.5 rounded-lg border border-gray-300 text-gray-400 text-[14px]">Año</button>
             </div>
             <p id="full-date-label" class="text-center font-bold text-[16px] mb-8"></p>
-
             <div class="overflow-y-auto" style="height: calc(100vh - 220px);">
                 <div class="time-grid" id="grid-container">
                     <div id="now-line" class="current-time-indicator"></div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -118,10 +106,13 @@
             <div onclick="showPage('home')" class="pl-4"><i class="fa-solid fa-arrow-left text-xl text-gray-700"></i></div>
             <div class="cred-card">
                 <div class="cred-header-red"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo_UVM_Rojo.svg/1280px-Logo_UVM_Rojo.svg.png" class="h-9 brightness-0 invert"></div>
-                <div class="pt-8 pb-24 text-center px-4">
+                <div class="pt-8 pb-24 text-center px-4 relative">
                     <p class="text-[#e32219] font-bold text-[13px] mb-1">Estudiante</p>
                     <h2 id="display-name-cred" class="text-[21px] font-black uppercase mb-1"></h2>
-                    <p id="display-career-cred" class="text-[13.5px] text-gray-600 font-bold leading-tight"></p>
+                    <div class="max-w-[220px] mx-auto">
+                        <p id="display-career-cred" class="text-[13.5px] text-gray-600 font-bold leading-tight"></p>
+                        <p class="text-[13.5px] text-gray-600 font-bold -mt-0.5 opacity-95">Campus LOMAS VERDES</p>
+                    </div>
                     <div class="qr-container"><img id="display-qr" src="" class="w-[148px] h-[148px]"></div>
                     <p id="display-id-cred" class="text-[18px] font-semibold text-gray-800"></p>
                     <p class="text-[10px] text-gray-400 font-normal uppercase">VIGENCIA: NO VIGENTE</p>
@@ -132,24 +123,18 @@
 
     <div id="menu" class="page bg-white p-6">
         <h2 class="text-2xl font-bold mb-6">Configuración</h2>
-        <label class="text-xs font-bold text-gray-400">NOMBRE</label>
         <input type="text" id="input-name" value="Garcia Fernandez Antonio Jose">
-        <label class="text-xs font-bold text-gray-400">MATRÍCULA</label>
         <input type="text" id="input-id" value="100240218">
-        <label class="text-xs font-bold text-gray-400">CARRERA</label>
         <input type="text" id="input-career" value="Lic En Medicina Veterin Y Zoo">
-        
-        <p class="font-bold mt-4 mb-2">Materias (Nombre | Inicio | Fin)</p>
-        <div id="subjects-inputs" class="space-y-2"></div>
-        
-        <button onclick="saveAndRefresh()" class="w-full bg-red-600 text-white font-bold py-4 rounded-xl mt-8">Guardar Todo</button>
+        <div id="subjects-inputs" class="space-y-2 mt-4"></div>
+        <button onclick="saveAndRefresh()" class="w-full bg-red-600 text-white font-bold py-4 rounded-xl mt-8">Guardar</button>
     </div>
 
-    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 py-3 flex justify-around items-center z-50">
-        <button onclick="showPage('home')" id="btn-home" class="flex flex-col items-center text-red-600"><i class="fa-solid fa-house text-lg"></i><span class="nav-text">Inicio</span></button>
-        <button onclick="showPage('credencial')" id="btn-credencial" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-id-card text-lg"></i><span class="nav-text">Credencial</span></button>
-        <button class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-circle-question text-lg"></i><span class="nav-text">CAE</span></button>
-        <button onclick="showPage('menu')" id="btn-menu" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-bars text-lg"></i><span class="nav-text">Menú</span></button>
+    <nav class="fixed bottom-0 w-full bg-white border-t py-3 flex justify-around items-center z-50">
+        <button onclick="showPage('home')" id="btn-home" class="flex flex-col items-center text-red-600"><i class="fa-solid fa-house"></i><span class="nav-text">Inicio</span></button>
+        <button onclick="showPage('credencial')" id="btn-credencial" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-id-card"></i><span class="nav-text">Credencial</span></button>
+        <button class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-circle-question"></i><span class="nav-text">CAE</span></button>
+        <button onclick="showPage('menu')" id="btn-menu" class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-bars"></i><span class="nav-text">Menú</span></button>
     </nav>
 
     <script>
@@ -169,16 +154,12 @@
             const now = new Date();
             const optShort = { weekday: 'long', day: '2-digit', month: 'long' };
             const optFull = { day: '2-digit', month: 'long', year: 'numeric' };
-            
-            let dateStr = now.toLocaleDateString('es-ES', optShort);
-            document.getElementById('current-date').innerText = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
-            
-            let fullDate = now.toLocaleDateString('es-ES', optFull); // "07 de abril de 2026"
-            document.getElementById('full-date-label').innerText = fullDate.replace(' de 20', ' del 20');
+            let ds = now.toLocaleDateString('es-ES', optShort);
+            document.getElementById('current-date').innerText = ds.charAt(0).toUpperCase() + ds.slice(1);
+            document.getElementById('full-date-label').innerText = now.toLocaleDateString('es-ES', optFull).replace(' de 20', ' del 20');
         }
 
         function renderAll() {
-            // Textos básicos
             document.getElementById('display-name-home').innerText = config.name;
             document.getElementById('display-id-home').innerText = config.id;
             document.getElementById('display-career-home').innerText = config.career;
@@ -186,99 +167,67 @@
             document.getElementById('display-id-cred').innerText = config.id;
             document.getElementById('display-career-cred').innerText = "Licenciatura - " + config.career;
             document.getElementById('display-qr').src = `https://api.qrserver.com/v1/create-qr-code/?data=${config.id}`;
-            
             const initials = config.name.split(' ');
-            document.getElementById('user-initials').innerText = (initials + initials[initials.length-1]).toUpperCase();
+            document.getElementById('user-initials').innerText = (initials[0][0] + initials[initials.length-1][0]).toUpperCase();
 
-            // Home Agenda
-            const homeList = document.getElementById('home-subjects-list');
-            homeList.innerHTML = config.subjects.map(s => `
-                <div class="materia-item">
-                    <span class="materia-text">${s.n}</span>
-                    <span class="materia-text opacity-90 mt-0.5">${s.s}H - ${s.e}H , SALÓN 10-F-405</span>
-                </div>
+            document.getElementById('home-subjects-list').innerHTML = config.subjects.map(s => `
+                <div class="materia-item"><span class="materia-text">${s.n}</span><span class="materia-text opacity-90 mt-0.5">${s.s}H - ${s.e}H , SALÓN 10-F-405</span></div>
             `).join('');
 
-            // Detalle Agenda (Grid)
             const grid = document.getElementById('grid-container');
             grid.querySelectorAll('.hour-label, .hour-line, .agenda-block').forEach(e => e.remove());
-            
             for(let h=7; h<=20; h++) {
                 const pos = (h - 7) * 60;
-                grid.innerHTML += `<div class="hour-label" style="top:${pos}px">${h}:00</div>`;
-                grid.innerHTML += `<div class="hour-line" style="top:${pos}px"></div>`;
+                grid.innerHTML += `<div class="hour-label" style="top:${pos}px">${h}:00</div><div class="hour-line" style="top:${pos}px"></div>`;
             }
 
             config.subjects.forEach(s => {
-                const start = s.s.split(':');
-                const end = s.e.split(':');
-                const startPos = (parseInt(start) - 7) * 60 + parseInt(start);
-                const endPos = (parseInt(end) - 7) * 60 + parseInt(end);
-                
-                grid.innerHTML += `
-                    <div class="agenda-block" style="top:${startPos}px; height:${endPos - startPos}px">
-                        <span class="agenda-block-title">${s.n}</span>
-                        <span class="agenda-block-info">${s.s}h - ${s.e}h, Salón 10-F-405</span>
-                    </div>
-                `;
+                const st = s.s.split(':'), et = s.e.split(':');
+                const startPos = (parseInt(st[0]) - 7) * 60 + parseInt(st[1]);
+                const endPos = (parseInt(et[0]) - 7) * 60 + parseInt(et[1]);
+                grid.innerHTML += `<div class="agenda-block" style="top:${startPos + 2}px; height:${(endPos - startPos) - 4}px">
+                    <span class="agenda-block-title">${s.n}</span>
+                    <span class="agenda-block-info">${s.s}h - ${s.e}h, Salón 10-F-405</span>
+                </div>`;
             });
 
-            // Inputs del menú
-            const inputsCont = document.getElementById('subjects-inputs');
-            inputsCont.innerHTML = config.subjects.map((s, i) => `
-                <div class="flex gap-1">
-                    <input type="text" id="in-n-${i}" value="${s.n}" class="flex-1">
-                    <input type="text" id="in-s-${i}" value="${s.s}" class="w-16 text-center">
-                    <input type="text" id="in-e-${i}" value="${s.e}" class="w-16 text-center">
-                </div>
+            document.getElementById('subjects-inputs').innerHTML = config.subjects.map((s, i) => `
+                <div class="flex gap-1"><input type="text" id="in-n-${i}" value="${s.n}" class="flex-1"><input type="text" id="in-s-${i}" value="${s.s}" class="w-16 text-center"><input type="text" id="in-e-${i}" value="${s.e}" class="w-16 text-center"></div>
             `).join('');
-            
             updateTimePointer();
         }
 
         function updateTimePointer() {
-            const now = new Date();
-            const line = document.getElementById('now-line');
+            const now = new Date(), line = document.getElementById('now-line');
             if(now.getHours() >= 7 && now.getHours() < 21) {
-                const pos = (now.getHours() - 7) * 60 + now.getMinutes();
-                line.style.top = pos + "px";
+                line.style.top = ((now.getHours() - 7) * 60 + now.getMinutes()) + "px";
                 line.style.display = "block";
-            } else { line.style.display = "none"; }
+            } else line.style.display = "none";
         }
 
         function triggerAgendaLoad() {
             document.getElementById('loader').style.display = 'flex';
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                showPage('agenda-detail');
-            }, 700);
+            setTimeout(() => { document.getElementById('loader').style.display = 'none'; showPage('agenda-detail'); }, 700);
         }
 
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            const btns = { home: 'btn-home', credencial: 'btn-credencial', menu: 'btn-menu' };
             document.querySelectorAll('nav button').forEach(b => b.classList.replace('text-red-600', 'text-gray-400'));
-            if(btns[id]) document.getElementById(btns[id]).classList.replace('text-gray-400', 'text-red-600');
-            if(id === 'home' || id === 'agenda-detail') updateDates();
+            const btnId = { home: 'btn-home', credencial: 'btn-credencial', menu: 'btn-menu' }[id];
+            if(btnId) document.getElementById(btnId).classList.replace('text-gray-400', 'text-red-600');
+            updateDates();
         }
 
         function saveAndRefresh() {
             config.name = document.getElementById('input-name').value;
             config.id = document.getElementById('input-id').value;
             config.career = document.getElementById('input-career').value;
-            config.subjects = config.subjects.map((_, i) => ({
-                n: document.getElementById(`in-n-${i}`).value,
-                s: document.getElementById(`in-s-${i}`).value,
-                e: document.getElementById(`in-e-${i}`).value
-            }));
-            renderAll();
-            showPage('home');
+            config.subjects = config.subjects.map((_, i) => ({ n: document.getElementById(`in-n-${i}`).value, s: document.getElementById(`in-s-${i}`).value, e: document.getElementById(`in-e-${i}`).value }));
+            renderAll(); showPage('home');
         }
 
-        updateDates();
-        renderAll();
-        setInterval(updateTimePointer, 30000);
+        updateDates(); renderAll(); setInterval(updateTimePointer, 30000);
     </script>
 </body>
 </html>
