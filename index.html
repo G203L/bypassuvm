@@ -12,7 +12,6 @@
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* --- HOME: ESTILOS --- */
         .card-uvm-home { 
             background: white; border: 1.5px solid #d1d5db; border-radius: 1.1rem; 
             padding: 1.25rem 1rem; margin-bottom: 0.9rem;
@@ -33,7 +32,6 @@
         }
         .materia-text { font-weight: 800; font-size: 12px; color: #000; display: block; }
         
-        /* --- CREDENCIAL: ESTILOS --- */
         .cred-card {
             width: 90%; max-width: 380px; background-color: #ffe4e6; 
             border-radius: 1.5rem; overflow: hidden; margin-top: 20px;
@@ -50,7 +48,6 @@
         .qr-container { background: white; padding: 10px; display: inline-block; border-radius: 0.5rem; margin: 15px 0; }
         .nav-text { font-size: 8.5px; font-weight: 800; margin-top: 2px; }
 
-        /* Inputs de configuración */
         input { border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.5rem; width: 100%; margin-bottom: 1rem; }
     </style>
 </head>
@@ -85,25 +82,22 @@
                 <p id="current-date" class="font-bold text-[14px] -mt-1 mb-3 text-capitalize">Cargando fecha...</p>
                 
                 <div class="space-y-1">
-                    <div class="materia-item">
-                        <span id="m1-name" class="materia-text">Ingles VI</span>
-                        <span class="materia-text opacity-90 mt-0.5">09:00H - 10:30H , SALÓN 10-F-405</span>
-                    </div>
-                    <div class="materia-item">
-                        <span id="m2-name" class="materia-text">Cuerpo animal I</span>
-                        <span class="materia-text opacity-90 mt-0.5">10:30H - 12:00H , SALÓN 10-F-405</span>
-                    </div>
-                    <div class="materia-item">
-                        <span id="m3-name" class="materia-text">Nutricion animal</span>
-                        <span class="materia-text opacity-90 mt-0.5">13:00H - 15:00H , SALÓN 10-F-405</span>
-                    </div>
-                    <div class="materia-item">
-                        <span id="m4-name" class="materia-text">Medicina de Aves</span>
-                        <span class="materia-text opacity-90 mt-0.5">15:30H - 17:30H , SALÓN 10-F-405</span>
-                    </div>
+                    <div class="materia-item"><span id="m1-name" class="materia-text">Ingles VI</span><span class="materia-text opacity-90 mt-0.5">09:00H - 10:30H , SALÓN 10-F-405</span></div>
+                    <div class="materia-item"><span id="m2-name" class="materia-text">Cuerpo animal I</span><span class="materia-text opacity-90 mt-0.5">10:30H - 12:00H , SALÓN 10-F-405</span></div>
+                    <div class="materia-item"><span id="m3-name" class="materia-text">Nutricion animal</span><span class="materia-text opacity-90 mt-0.5">13:00H - 15:00H , SALÓN 10-F-405</span></div>
+                    <div class="materia-item"><span id="m4-name" class="materia-text">Medicina de Aves</span><span class="materia-text opacity-90 mt-0.5">15:30H - 17:30H , SALÓN 10-F-405</span></div>
                 </div>
             </div>
-        </main>
+
+            <div class="card-uvm-home mt-4">
+                <div class="flex justify-between items-center mb-3"><h2 class="text-[17px] font-bold">Avance académico</h2><i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i></div>
+                <div class="flex justify-between text-center">
+                    <div class="flex-1"><p class="text-[17px] font-bold">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p></div>
+                    <div class="flex-1 border-x border-gray-300"><p class="text-[17px] font-bold">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
+                    <div class="flex-1"><p class="text-[17px] font-bold">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
+                </div>
+            </div>
+            </main>
     </div>
 
     <div id="credencial" class="page bg-white">
@@ -168,7 +162,6 @@
     </nav>
 
     <script>
-        // Sincronizar fecha real
         function updateDate() {
             const options = { weekday: 'long', day: '2-digit', month: 'long' };
             let today = new Date().toLocaleDateString('es-ES', options);
@@ -179,10 +172,8 @@
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            
             const navButtons = { 'home': 'btn-home', 'credencial': 'btn-credencial', 'menu': 'btn-menu' };
             document.querySelectorAll('nav button').forEach(btn => btn.classList.replace('text-red-600', 'text-gray-400'));
-            
             const activeBtn = document.getElementById(navButtons[id]);
             if(activeBtn) activeBtn.classList.replace('text-gray-400', 'text-red-600');
         }
@@ -191,32 +182,21 @@
             const name = document.getElementById('input-name').value;
             const id = document.getElementById('input-id').value;
             const career = document.getElementById('input-career').value;
-            
-            // Actualizar Home
             document.getElementById('display-name-home').innerText = name;
             document.getElementById('display-id-home').innerText = id;
             document.getElementById('display-career-home').innerText = career;
-            
-            // Actualizar Credencial
             document.getElementById('display-name-cred').innerText = name.toUpperCase();
             document.getElementById('display-id-cred').innerText = id;
             document.getElementById('display-career-cred').innerText = "Licenciatura - " + career;
             document.getElementById('display-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${id}`;
-            
-            // Iniciales
             const parts = name.split(' ');
             if(parts.length >= 2) document.getElementById('user-initials').innerText = (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
-
-            // Materias
             document.getElementById('m1-name').innerText = document.getElementById('input-m1').value;
             document.getElementById('m2-name').innerText = document.getElementById('input-m2').value;
             document.getElementById('m3-name').innerText = document.getElementById('input-m3').value;
             document.getElementById('m4-name').innerText = document.getElementById('input-m4').value;
-
             showPage('home');
         }
-
-        // Ejecutar al cargar
         updateDate();
     </script>
 </body>
