@@ -81,7 +81,7 @@
                 <div class="flex justify-between text-center">
                     <div class="flex-1"><p class="text-[17px] font-bold">12.5%</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Avance<br>académico</p></div>
                     <div class="flex-1 border-x border-gray-300"><p class="text-[17px] font-bold">9.40</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Promedio<br>general</p></div>
-                    <div class="flex-1"><p class="text-[17px] font-bold">6/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
+                    <div class="flex-1"><p class="text-[17px] font-bold">16/48</p><p class="text-[9px] text-gray-400 font-bold uppercase leading-tight">Materias<br>aprobadas</p></div>
                 </div>
             </div>
         </main>
@@ -184,7 +184,7 @@
 
             // Home: Salón en minúsculas
             document.getElementById('home-subjects-list').innerHTML = config.subjects.map(s => `
-                <div class="materia-item"><span class="materia-text">${s.n}</span><span class="materia-text opacity-90 mt-0.5">${s.s}H - ${s.e}H , Salón ${s.r}</span></div>
+                <div class="materia-item"><span class="materia-text">${s.n}</span><span class="materia-text opacity-90 mt-0.5">${s.s}h - ${s.e}h , Salón ${s.r}</span></div>
             `).join('');
 
             const grid = document.getElementById('grid-container');
